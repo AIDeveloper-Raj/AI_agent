@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CEIPAL BO Agent / Finance</title>
+    <link rel="stylesheet" href="/static/style.css" />
+</head>
+
+<body class="shell-root">
+
+    <!-- Left nav -->
+    <aside class="shell-left">
+        <div class="shell-left__brand">CEIPAL</div>
+        <nav class="shell-left__nav">
+            <a class="shell-left__item active" href="/finance">Finance</a>
+            <span class="shell-left__item disabled" title="Coming soon">HR</span>
+        </nav>
+    </aside>
+
+    <!-- Right shell -->
+    <div class="shell-right">
+
+        <!-- Header -->
+        <header class="shell-header">
+            <div class="shell-header__left">
+                <div class="shell-header__title">CEIPAL BO Agent</div>
+                <div class="crumbs">
+                    <span class="crumb-sep">/</span>
+                    <a class="crumb" href="/">BO Agent</a>
+                    <span class="crumb-sep">/</span>
+                    <span class="crumb-current">Finance</span>
+                </div>
+            </div>
+            <div class="shell-header__right">
+                <input class="shell-search" placeholder="Search…" />
+                <div class="shell-avatar">C</div>
+            </div>
+        </header>
+
+        <!-- Workspace -->
+        <main class="workspace">
+
+            <div class="workspace-grid">
+
+                <!-- LEFT: Chat pane -->
+                <section class="chat-pane">
+                    <div class="chat-pane__header">
+                        <span class="chat-pane__title">Finance Agent</span>
+                    </div>
+
+                    <div class="chat-thread" id="thread">
+                        <!-- messages injected here -->
+                    </div>
+
+                    <div class="chat-input">
+                        <input id="msg" placeholder="Ask to generate invoices, create AP bills…" autocomplete="off" />
+                        <button class="btn primary" id="send">Send</button>
+                    </div>
+                </section>
+
+                <!-- RIGHT: Canvas pane -->
+                <section class="canvas-pane">
+                    <div class="canvas-pane__header">
+                        <span class="canvas-pane__title">Finance Orchestrator</span>
+                        <span class="canvas-pill" id="canvasStatus">Idle</span>
+                    </div>
+
+                    <div class="canvas-pane__body">
+                        <div class="canvas-card" id="canvasContainer">
+                            <div class="canvas-empty">
+                                Ask in chat to begin an invoice / AP run.
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <link rel="stylesheet" href="/frontend/style.css">
+    <script src="/frontend/app.js"></script>
+    <script>
+        const threadEl = document.getElementById("thread");
+        const msgEl = document.getElementById("msg");
+        const sendBtn = document.getElementById("send");
+        const statusEl = document.getElementById("canvasStatus");
+        const canvasEl = document.getElementById("canvasContainer");
+
+        function addMsg(who, text) {
+            if (who === "You") {
+                const d = document.createElement("div");
+                d.className = "bubble you";
+                d.textContent = text;
+                threadEl.appendChild(d);
+            } else {
+                const wrap = document.createElement("div");
+                wrap.className = "agent-block";
+
+                const meta = document.createElement("div");
+                meta.className = "agent-meta";
+                meta.textContent = "Agent";
+
+                const body = document.createElement("div");
+                body.className = "agent-text";
+                body.textContent = text;
+
+                wrap.appendChild(meta);
+                wrap.appendChild(body);
+                threadEl.appendChild(wrap);
+            }
+            threadEl.scrollTop = threadEl.scrollHeight;
+        }
+
+        function renderResult(data) {
+            statusEl.textContent = "Done";
+            canvasEl.innerHTML = `
+                <div class="canvas-inner-header">
+                    <h3 class="canvas-inner-title">Result</h3>
+                </div>
+                <div class="canvas-inner-body">
+                    <pre style="font-size:13px; white-space:pre-wrap; word-break:break-all;">${JSON.stringify(data, null, 2)}</pre>
+                </div>
+            `;
+        }
+
+        async function handleSend() {
+            const text = msgEl.value.trim();
+            if (!text) return;
+
+            addMsg("You", text);
+            msgEl.value = "";
+            statusEl.textContent = "Running…";
+            addMsg("Agent", "Processing…");
+
+            try {
+                const res = await fetch("/api/orchestrate", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ message: text }),
+                });
+                const data = await res.json();
+                addMsg("Agent", data.narration || "Done.");
+                renderResult(data);
+            } catch (err) {
+                addMsg("Agent", "Error: " + err.message);
+                statusEl.textContent = "Error";
+            }
+        }
+
+        sendBtn.addEventListener("click", handleSend);
+        msgEl.addEventListener("keydown", (e) => { if (e.key === "Enter") handleSend(); });
+
+        // Auto-send any prompt carried from the landing page
+        window.addEventListener("load", () => {
+            const pending = sessionStorage.getItem("pendingPrompt");
+            if (pending) {
+                sessionStorage.removeItem("pendingPrompt");
+                msgEl.value = pending;
+                handleSend();
+            }
+        });
+    </script>
+
+</body>
+
+</html>

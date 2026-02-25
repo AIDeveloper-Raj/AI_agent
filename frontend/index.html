@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ceipal BO Agent</title>
+    <link rel="stylesheet" href="/frontend/style.css">
+    <script src="/frontend/app.js"></script>
+</head>
+
+<body class="shell-root">
+
+    <!-- Left nav -->
+    <aside class="shell-left">
+        <div class="shell-left__brand">CEIPAL</div>
+        <nav class="shell-left__nav">
+            <a class="shell-left__item active" href="/finance">Finance</a>
+            <span class="shell-left__item disabled" title="Coming soon">HR</span>
+        </nav>
+    </aside>
+
+    <!-- Right shell -->
+    <div class="shell-right">
+
+        <!-- Header -->
+        <header class="shell-header">
+            <div class="shell-header__left">
+                <div class="shell-header__title">CEIPAL BO Agent</div>
+            </div>
+            <div class="shell-header__right">
+                <input class="shell-search" placeholder="Search…" />
+                <div class="shell-avatar">C</div>
+            </div>
+        </header>
+
+        <!-- Landing body — centered hero card -->
+        <main class="landing-main">
+            <div class="landing-hero">
+                <div class="landing-title">Ceipal BO Agent</div>
+                <div class="landing-subtitle">
+                    AI-powered back-office automation — invoices, AP bills, reconciliation and more.
+                </div>
+
+                <!-- Module chips -->
+                <div class="landing-chips">
+                    <button class="chip active" id="financeChip">Finance</button>
+                    <button class="chip" disabled title="Coming soon">HR</button>
+                </div>
+
+                <!-- Chat input -->
+                <div class="landing-chatbox">
+                    <input id="landingInput" placeholder="Ask me to generate invoices, create AP bills…"
+                        autocomplete="off" />
+                    <button class="btn primary" id="landingSend">Send</button>
+                </div>
+
+                <div id="landingHint" class="landing-hint"></div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function goFinance() {
+            window.location.href = "/finance";
+        }
+
+        document.getElementById("financeChip").addEventListener("click", goFinance);
+
+        document.getElementById("landingSend").addEventListener("click", () => {
+            const val = document.getElementById("landingInput").value.trim();
+            if (!val) return;
+            // Carry the message into the finance page via sessionStorage
+            sessionStorage.setItem("pendingPrompt", val);
+            goFinance();
+        });
+
+        document.getElementById("landingInput").addEventListener("keydown", (e) => {
+            if (e.key === "Enter") document.getElementById("landingSend").click();
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,831 @@
+/*
+ * ============================================================
+ *  CEIPAL BO Agent — Shell + Canvas CSS
+ *  Files: index.html (landing), finance.html (internal agent)
+ * ============================================================
+ *
+ *  SCROLL ARCHITECTURE
+ *  -------------------
+ *  Why min-height:0 is needed on grid/flex children:
+ *    By default, flex/grid children have min-height:auto, which means
+ *    they refuse to shrink below their content height. This breaks nested
+ *    scroll containers because the child keeps expanding to fit content
+ *    instead of clipping to its allocated grid area. Setting min-height:0
+ *    tells the browser "it's okay to shrink me", making the child truly
+ *    constrained by its grid track.
+ *
+ *  Scroll regions (one and only one per pane):
+ *    - .chat-thread          → scrolls the chat message history
+ *    - .canvas-inner-body    → scrolls the canvas content (form, table, etc.)
+ *
+ *  These containers must NOT scroll:
+ *    - .workspace-grid, .chat-pane, .canvas-pane, .canvas-pane__body
+ *    - .canvas-card (clips, does not scroll — children scroll)
+ *
+ * ============================================================
+ *
+ *  Sections:
+ *    1. Tokens
+ *    2. Base reset
+ *    3. Shell layout (left nav + right shell + header)
+ *    4. Workspace layout (grid split)
+ *    5. Chat pane
+ *    6. Canvas pane
+ *    7. Buttons
+ *    8. Tables & form fields
+ *    9. Landing page
+ * ============================================================
+ */
+
+/* ============================================================
+   1. TOKENS
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap');
+
+:root {
+    --font-body: "DM Sans", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+    --font-head: "Poppins", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+
+    --nav-w: 88px;
+    --hdr-h: 64px;
+
+    --bg: #f6f8fc;
+    --panel: #ffffff;
+    --border: #e5eaf3;
+    --text: #0f172a;
+    --muted: #667085;
+
+    --shadow: 0 8px 30px rgba(15, 23, 42, 0.08);
+    --radius: 18px;
+
+    --nav: #1f2f4d;
+    --nav2: #243859;
+    --btn: #0f172a;
+}
+
+/* ============================================================
+   2. BASE RESET
+   ============================================================ */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--text);
+}
+
+h1,
+h2,
+h3,
+h4,
+.shell-left__brand,
+.canvas-pane__title,
+.chat-pane__title,
+.canvas-inner-title {
+    font-family: var(--font-head);
+    margin: 0;
+}
+
+/* ============================================================
+   3. SHELL LAYOUT
+   ============================================================ */
+
+/* Root grid: [nav | content] */
+.shell-root {
+    display: grid;
+    grid-template-columns: var(--nav-w) 1fr;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* --- Left nav --- */
+.shell-left {
+    background: linear-gradient(180deg, var(--nav), var(--nav2));
+    color: #fff;
+    padding: 12px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    overflow: hidden;
+}
+
+.shell-left__brand {
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    padding: 10px;
+    opacity: 0.9;
+}
+
+.shell-left__nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.shell-left__item {
+    color: rgba(255, 255, 255, 0.82);
+    text-decoration: none;
+    font-size: 12px;
+    padding: 10px;
+    border-radius: 14px;
+    transition: background 0.15s;
+}
+
+.shell-left__item:hover {
+    background: rgba(255, 255, 255, 0.10);
+}
+
+.shell-left__item.active {
+    background: rgba(255, 255, 255, 0.16);
+    color: #fff;
+}
+
+.shell-left__item.disabled {
+    opacity: 0.45;
+    pointer-events: none;
+    cursor: default;
+}
+
+/* --- Right shell: [header | workspace] --- */
+.shell-right {
+    display: grid;
+    grid-template-rows: var(--hdr-h) 1fr;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* --- Header --- */
+.shell-header {
+    background: var(--panel);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 18px;
+}
+
+.shell-header__left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.shell-header__title {
+    font-family: var(--font-head);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+}
+
+.shell-header__right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.shell-search {
+    width: 240px;
+    padding: 10px 12px;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    outline: none;
+    font-size: 14px;
+    font-family: var(--font-body);
+}
+
+.shell-avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 14px;
+    background: var(--btn);
+    color: #fff;
+    display: grid;
+    place-items: center;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+/* Breadcrumbs */
+.crumbs {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-family: var(--font-body);
+}
+
+.crumb {
+    text-decoration: none;
+    color: #2563eb;
+}
+
+.crumb-current {
+    color: var(--text);
+    font-weight: 600;
+}
+
+.crumb-sep {
+    color: #94a3b8;
+}
+
+/* ============================================================
+   4. WORKSPACE LAYOUT
+   ============================================================ */
+
+/* Workspace fills the row below the header */
+.workspace {
+    padding: 18px;
+    height: calc(100vh - var(--hdr-h));
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.workspace-subheader {
+    flex: 0 0 auto;
+    padding: 0 4px;
+}
+
+/* 2-column grid: 35% chat / 65% canvas */
+.workspace-grid {
+    flex: 1;
+    min-height: 0;
+    /* REQUIRED: allows grid children to shrink */
+    display: grid;
+    grid-template-columns: 0.35fr 0.65fr;
+    gap: 16px;
+}
+
+/* ============================================================
+   5. CHAT PANE
+   ============================================================ */
+
+.chat-pane {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    min-height: 0;
+    /* REQUIRED */
+    display: grid;
+    grid-template-rows: 56px 1fr 72px;
+    overflow: hidden;
+}
+
+.chat-pane__header {
+    border-bottom: 1px solid var(--border);
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+}
+
+.chat-pane__title {
+    font-size: 15px;
+    font-weight: 700;
+}
+
+/* SCROLL REGION 1: chat thread */
+.chat-thread {
+    padding: 16px;
+    overflow-y: auto;
+    /* ← only this scrolls */
+    min-height: 0;
+    /* REQUIRED */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.chat-input {
+    border-top: 1px solid var(--border);
+    padding: 12px;
+    display: grid;
+    grid-template-columns: 1fr 100px;
+    gap: 10px;
+    background: var(--panel);
+    /* stays visible above scroll */
+}
+
+.chat-input input {
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 12px;
+    outline: none;
+    font-size: 14px;
+    font-family: var(--font-body);
+}
+
+/* Chat bubbles */
+.bubble {
+    max-width: 90%;
+    padding: 10px 12px;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    background: #fbfdff;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.bubble.you {
+    margin-left: auto;
+    background: #eef2ff;
+    border-color: #dbe2ff;
+}
+
+/* Agent block (no bubble, structured) */
+.agent-block {
+    max-width: 92%;
+    padding: 8px 10px;
+    border-radius: 12px;
+    border-left: 3px solid rgba(148, 163, 184, 0.4);
+    margin: 2px 0 8px;
+}
+
+.agent-block .agent-meta {
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 5px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.agent-block .agent-text {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* ============================================================
+   6. CANVAS PANE
+   ============================================================ */
+
+.canvas-pane {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    min-height: 0;
+    /* REQUIRED */
+    display: grid;
+    grid-template-rows: 56px 1fr;
+    overflow: hidden;
+}
+
+.canvas-pane__header {
+    border-bottom: 1px solid var(--border);
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.canvas-pane__title {
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.canvas-pill {
+    font-size: 12px;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: #fbfdff;
+}
+
+/* Body of canvas pane: does NOT scroll — only clips */
+.canvas-pane__body {
+    min-height: 0;
+    /* REQUIRED */
+    overflow: hidden;
+    /* clip, not scroll */
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Card fills the body and provides the flex column for inner header/body/footer */
+.canvas-card {
+    flex: 1;
+    min-height: 0;
+    /* REQUIRED */
+    border: 1px solid var(--border);
+    background: #fbfdff;
+    border-radius: 16px;
+    overflow: hidden;
+    /* clips — inner-body scrolls */
+    display: flex;
+    flex-direction: column;
+}
+
+.canvas-empty {
+    padding: 20px;
+    color: var(--muted);
+    font-size: 14px;
+}
+
+/* Canvas card inner layout */
+.canvas-inner-header {
+    flex: 0 0 auto;
+    padding: 16px 18px;
+    border-bottom: 1px solid var(--border);
+    background: var(--panel);
+}
+
+.canvas-inner-title {
+    font-size: 18px;
+}
+
+.canvas-subtitle {
+    margin-top: 6px;
+    font-size: 13px;
+    color: var(--muted);
+}
+
+/* SCROLL REGION 2: canvas body */
+.canvas-inner-body {
+    flex: 1;
+    min-height: 0;
+    /* REQUIRED */
+    overflow-y: auto;
+    /* ← only this scrolls inside canvas */
+    padding: 18px;
+    background: #fbfdff;
+}
+
+/* Footer pinned at bottom — never hidden */
+.canvas-inner-footer {
+    flex: 0 0 auto;
+    border-top: 1px solid var(--border);
+    padding: 12px 16px;
+    background: var(--panel);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+/* --- Canvas header/footer chrome (alternate naming used in draft grid) --- */
+.canvas-header {
+    flex: 0 0 auto;
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+    background: var(--panel);
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.canvas-title {
+    font-family: var(--font-head);
+    font-size: 18px;
+}
+
+.canvas-footer {
+    flex: 0 0 auto;
+    border-top: 1px solid var(--border);
+    padding: 12px 14px;
+    background: var(--panel);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.canvas-scroll {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    padding: 14px;
+}
+
+/* Totals chips (draft grid) */
+.totals-wrap {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.total-chip {
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 8px 10px;
+    min-width: 86px;
+    text-align: right;
+    background: #fbfdff;
+}
+
+.total-chip .k {
+    font-size: 11px;
+    color: var(--muted);
+}
+
+.total-chip .v {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.total-chip.grand {
+    background: #f1f5f9;
+}
+
+/* footer helpers */
+.footer-left {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.footer-right {
+    display: flex;
+    gap: 10px;
+}
+
+/* ============================================================
+   7. BUTTONS
+   ============================================================ */
+
+.btn {
+    border: 1px solid var(--border);
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 10px 18px;
+    font-size: 14px;
+    font-family: var(--font-body);
+    cursor: pointer;
+    transition: filter 0.12s, background 0.12s;
+}
+
+.btn.primary {
+    background: var(--btn);
+    color: #fff;
+    border-color: var(--btn);
+}
+
+.btn:hover {
+    filter: brightness(0.96);
+}
+
+.btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    filter: none;
+}
+
+/* ============================================================
+   8. TABLES & FORM FIELDS
+   ============================================================ */
+
+/* Table */
+.table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 14px;
+}
+
+.table th,
+.table td {
+    padding: 10px;
+    border-bottom: 1px solid var(--border);
+    text-align: left;
+}
+
+.table thead th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: var(--panel);
+    font-weight: 600;
+}
+
+/* Draft table inputs */
+.ts-input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    outline: none;
+    font-size: 14px;
+    font-family: var(--font-body);
+}
+
+.ts-input:focus {
+    border-color: #94a3b8;
+}
+
+/* Form grid (inside canvas-inner-body) */
+.form-grid {
+    max-width: 720px;
+    margin: 0 auto;
+    display: grid;
+    gap: 14px;
+}
+
+.field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.field label {
+    font-size: 13px;
+    color: var(--muted);
+    display: block;
+    margin-bottom: 6px;
+}
+
+.field select,
+.field input,
+.field textarea {
+    width: 100%;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 12px;
+    font-size: 14px;
+    font-family: var(--font-body);
+    outline: none;
+    background: #fff;
+    transition: border-color 0.15s;
+}
+
+.field select:focus,
+.field input:focus,
+.field textarea:focus {
+    border-color: #94a3b8;
+}
+
+.field textarea {
+    min-height: 110px;
+    resize: vertical;
+}
+
+.file-row {
+    display: grid;
+    gap: 8px;
+}
+
+.file-help {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+/* Validation banner */
+.val-banner {
+    border: 1px solid #fecaca;
+    background: #fff1f2;
+    color: #7f1d1d;
+    border-radius: 14px;
+    padding: 12px 14px;
+    margin-bottom: 14px;
+}
+
+.val-banner h4 {
+    margin: 0 0 6px;
+    font-family: var(--font-head);
+    font-size: 14px;
+}
+
+.val-banner ul {
+    margin: 0;
+    padding-left: 18px;
+    font-size: 13px;
+}
+
+/* ============================================================
+   9. LANDING PAGE
+   ============================================================ */
+
+/* Used by index.html — fullscreen centered hero */
+.landing-main {
+    padding: 24px;
+    height: calc(100vh - var(--hdr-h));
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+}
+
+.landing-hero {
+    width: min(960px, 92vw);
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    box-shadow: var(--shadow);
+    padding: 32px;
+}
+
+.landing-title {
+    font-family: var(--font-head);
+    font-size: 34px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+}
+
+.landing-subtitle {
+    margin-top: 8px;
+    color: var(--muted);
+    font-size: 15px;
+}
+
+.landing-chips {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.chip {
+    border: 1px solid var(--border);
+    background: #fbfdff;
+    padding: 10px 16px;
+    border-radius: 999px;
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-size: 14px;
+    transition: background 0.15s, border-color 0.15s;
+}
+
+.chip:hover:not(:disabled) {
+    background: #eef2ff;
+    border-color: #c7d2fe;
+}
+
+.chip.active {
+    background: var(--btn);
+    color: #fff;
+    border-color: var(--btn);
+}
+
+.chip:disabled,
+.chip[disabled] {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.landing-chatbox {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 1fr 120px;
+    gap: 10px;
+}
+
+.landing-chatbox input {
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 14px;
+    font-size: 15px;
+    font-family: var(--font-body);
+    outline: none;
+    transition: border-color 0.15s;
+}
+
+.landing-chatbox input:focus {
+    border-color: #94a3b8;
+}
+
+.landing-hint {
+    margin-top: 14px;
+    color: var(--muted);
+    font-size: 13px;
+    min-height: 20px;
+}
+
+/* ============================================================
+   RESPONSIVE TWEAKS
+   ============================================================ */
+
+@media (max-width: 1100px) {
+    .field-row {
+        grid-template-columns: 1fr;
+    }
+
+    .workspace-grid {
+        grid-template-columns: 0.4fr 0.6fr;
+    }
+}
+
+@media (min-width: 1920px) {
+    :root {
+        --nav-w: 100px;
+        --hdr-h: 68px;
+    }
+
+    .landing-hero {
+        width: min(1100px, 80vw);
+    }
+}
