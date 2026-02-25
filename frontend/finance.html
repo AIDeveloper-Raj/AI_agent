@@ -6,6 +6,76 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>CEIPAL BO Agent / Finance</title>
     <link rel="stylesheet" href="/static/style.css" />
+    <style>
+        /* ChatGPT-style Bouncing Dots */
+        .typing-indicator {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 8px 12px;
+        }
+
+        .typing-indicator span {
+            width: 6px;
+            height: 6px;
+            background-color: #64748b;
+            border-radius: 50%;
+            animation: typing 1.4s infinite ease-in-out;
+        }
+
+        .typing-indicator span:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .typing-indicator span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-indicator span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+
+            50% {
+                transform: scale(1.5);
+                opacity: 1;
+            }
+        }
+
+        /* Canvas Skeleton Loader */
+        .canvas-skeleton {
+            padding: 24px;
+            background: #fff;
+            border-radius: 8px;
+            height: 100%;
+        }
+
+        .skeleton-pulse {
+            animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+            background-color: #e2e8f0;
+            border-radius: 4px;
+            margin-bottom: 12px;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: .5;
+            }
+        }
+    </style>
 </head>
 
 <body class="shell-root">
@@ -80,8 +150,8 @@
         </main>
     </div>
 
-    <link rel="stylesheet" href="/frontend/style.css">
-    <script src="/frontend/app.js"></script>
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="/static/app.js"></script>
     <script>
         const threadEl = document.getElementById("thread");
         const msgEl = document.getElementById("msg");
@@ -89,7 +159,8 @@
         const statusEl = document.getElementById("canvasStatus");
         const canvasEl = document.getElementById("canvasContainer");
 
-        function addMsg(who, text) {
+        // Updated to accept 'options' and render them as buttons
+        function addMsg(who, text, options = null) {
             if (who === "You") {
                 const d = document.createElement("div");
                 d.className = "bubble you";
@@ -107,6 +178,30 @@
                 body.className = "agent-text";
                 body.textContent = text;
 
+                // --- NEW LOGIC: Render interactive buttons ---
+                if (options && options.length > 0) {
+                    const optsDiv = document.createElement("div");
+                    optsDiv.style.display = "flex";
+                    optsDiv.style.gap = "8px";
+                    optsDiv.style.marginTop = "10px";
+                    optsDiv.style.flexWrap = "wrap";
+
+                    options.forEach(opt => {
+                        const btn = document.createElement("button");
+                        btn.className = "btn"; // Uses your custom CSS class
+                        btn.style.padding = "6px 12px";
+                        btn.textContent = opt.label;
+
+                        // When clicked, auto-fill the chat and send!
+                        btn.onclick = () => {
+                            msgEl.value = opt.value;
+                            handleSend();
+                        };
+                        optsDiv.appendChild(btn);
+                    });
+                    body.appendChild(optsDiv);
+                }
+
                 wrap.appendChild(meta);
                 wrap.appendChild(body);
                 threadEl.appendChild(wrap);
@@ -114,26 +209,132 @@
             threadEl.scrollTop = threadEl.scrollHeight;
         }
 
+        // Keep rendering the JSON on the canvas for debugging
         function renderResult(data) {
             statusEl.textContent = "Done";
-            canvasEl.innerHTML = `
-                <div class="canvas-inner-header">
-                    <h3 class="canvas-inner-title">Result</h3>
-                </div>
-                <div class="canvas-inner-body">
-                    <pre style="font-size:13px; white-space:pre-wrap; word-break:break-all;">${JSON.stringify(data, null, 2)}</pre>
-                </div>
-            `;
+
+            // Check if we have an invoice draft to render
+            if (data.artifacts && data.artifacts.invoice_drafts && data.artifacts.invoice_drafts.length > 0) {
+                const draft = data.artifacts.invoice_drafts[0];
+
+                let html = `
+                    <div class="canvas-inner-header">
+                        <h3 class="canvas-inner-title">Draft AR Invoice</h3>
+                        <div class="canvas-subtitle">Intent: <strong>${data.intent}</strong></div>
+                    </div>
+                    <div class="canvas-inner-body" style="background: #fff; padding: 24px;">
+                        
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 24px;">
+                            <div>
+                                <div style="color: var(--muted); font-size: 13px;">Bill To:</div>
+                                <div style="font-weight: 700; font-size: 18px;">${draft.client_name}</div>
+                                <div style="font-size: 14px; color: var(--muted);">${draft.billing_email}</div>
+                            </div>
+                            <div style="text-align: right;">
+                                <div style="color: var(--muted); font-size: 13px;">Status</div>
+                                <div style="font-weight: 700; font-size: 14px; color: #ca8a04;">Pending Approval</div>
+                            </div>
+                        </div>
+
+                        <table class="table" style="margin-bottom: 24px;">
+                            <thead>
+                                <tr>
+                                    <th>Description</th>
+                                    <th>Hours</th>
+                                    <th>Rate</th>
+                                    <th style="text-align: right;">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                `;
+
+                draft.line_items.forEach(item => {
+                    html += `
+                        <tr>
+                            <td>${item.description}</td>
+                            <td>${item.hours}</td>
+                            <td>$${item.rate.toFixed(2)}</td>
+                            <td style="text-align: right; font-weight: 600;">$${item.total.toFixed(2)}</td>
+                        </tr>
+                    `;
+                });
+
+                html += `
+                            </tbody>
+                        </table>
+                        
+                        <div class="totals-wrap" style="margin-bottom: 24px;">
+                            <div class="total-chip grand">
+                                <div class="k">Grand Total</div>
+                                <div class="v" style="color: #16a34a; font-size: 20px;">$${draft.grand_total.toFixed(2)}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="canvas-inner-footer">
+                        <div class="footer-left">Please review the draft before syncing.</div>
+                        <div class="footer-right">
+                            <button class="btn" onclick="alert('Draft rejected.')">Reject</button>
+                            <button class="btn primary" style="background: #16a34a; border-color: #16a34a;" onclick="alert('Approved! Syncing to QuickBooks...')">Approve & Sync to QB</button>
+                        </div>
+                    </div>
+                `;
+
+                canvasEl.innerHTML = html;
+            } else {
+                // Fallback to JSON view if it's not a draft
+                canvasEl.innerHTML = `
+                    <div class="canvas-inner-header">
+                        <h3 class="canvas-inner-title">Agent Payload</h3>
+                        <div class="canvas-subtitle">Intent Detected: <strong>${data.intent || 'N/A'}</strong></div>
+                    </div>
+                    <div class="canvas-inner-body">
+                        <pre style="font-size:13px; white-space:pre-wrap; word-break:break-all; background:#f8fafc; padding:12px; border-radius:8px;">${JSON.stringify(data, null, 2)}</pre>
+                    </div>
+                `;
+            }
         }
 
         async function handleSend() {
             const text = msgEl.value.trim();
             if (!text) return;
 
+            // Disable all previous option buttons so they can't be clicked again
+            const allButtons = threadEl.querySelectorAll('button');
+            allButtons.forEach(btn => {
+                btn.disabled = true;
+                btn.style.opacity = '0.5';
+                btn.style.cursor = 'not-allowed';
+            });
+
             addMsg("You", text);
             msgEl.value = "";
-            statusEl.textContent = "Running…";
-            addMsg("Agent", "Processing…");
+            statusEl.textContent = "Agent is thinking…";
+
+            // Add Bouncing Dots to Chat
+            const loadingId = "load-" + Date.now();
+            const loadingWrap = document.createElement("div");
+            loadingWrap.id = loadingId;
+            loadingWrap.className = "agent-block";
+            loadingWrap.innerHTML = `
+                <div class="agent-meta">FiAi</div>
+                <div class="agent-text" style="width: 60px;">
+                    <div class="typing-indicator"><span></span><span></span><span></span></div>
+                </div>`;
+            threadEl.appendChild(loadingWrap);
+            threadEl.scrollTop = threadEl.scrollHeight;
+
+            // Add Skeleton Loader to Canvas
+            canvasEl.innerHTML = `
+                <div class="canvas-skeleton">
+                    <h3 style="color: #64748b; margin-bottom: 20px;">Fetching Backend Data...</h3>
+                    <div class="skeleton-pulse" style="height: 20px; width: 40%;"></div>
+                    <div class="skeleton-pulse" style="height: 40px; width: 100%;"></div>
+                    <div class="skeleton-pulse" style="height: 40px; width: 100%;"></div>
+                    <div class="skeleton-pulse" style="height: 40px; width: 100%;"></div>
+                    <div class="skeleton-pulse" style="height: 20px; width: 30%; margin-top: 24px;"></div>
+                </div>
+            `;
 
             try {
                 const res = await fetch("/api/orchestrate", {
@@ -142,18 +343,29 @@
                     body: JSON.stringify({ message: text }),
                 });
                 const data = await res.json();
-                addMsg("Agent", data.narration || "Done.");
+
+                // Remove loading animations
+                document.getElementById(loadingId).remove();
+
+                let options = null;
+                if (data.next_question && data.next_question.options) {
+                    options = data.next_question.options;
+                }
+
+                addMsg("Agent", data.narration || "Done.", options);
                 renderResult(data);
+
             } catch (err) {
+                document.getElementById(loadingId).remove();
                 addMsg("Agent", "Error: " + err.message);
                 statusEl.textContent = "Error";
+                canvasEl.innerHTML = `<div style="padding: 20px; color: red;">Failed to connect to backend.</div>`;
             }
         }
 
         sendBtn.addEventListener("click", handleSend);
         msgEl.addEventListener("keydown", (e) => { if (e.key === "Enter") handleSend(); });
 
-        // Auto-send any prompt carried from the landing page
         window.addEventListener("load", () => {
             const pending = sessionStorage.getItem("pendingPrompt");
             if (pending) {

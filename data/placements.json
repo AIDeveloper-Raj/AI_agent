@@ -1,1 +1,72 @@
-[]
+[
+  {
+    "placement_id": 1001,
+    "client_id": 1,
+    "worker_id": 101,
+    "vendor_id": 1,
+    "status": "Active"
+  },
+  {
+    "placement_id": 1002,
+    "client_id": 1,
+    "worker_id": 102,
+    "vendor_id": null,
+    "status": "Active"
+  },
+  {
+    "placement_id": 1003,
+    "client_id": 1,
+    "worker_id": 103,
+    "vendor_id": 2,
+    "status": "Active"
+  },
+  {
+    "placement_id": 1004,
+    "client_id": 1,
+    "worker_id": 104,
+    "vendor_id": null,
+    "status": "Active"
+  },
+  {
+    "placement_id": 1005,
+    "client_id": 2,
+    "worker_id": 105,
+    "vendor_id": 3,
+    "status": "Active"
+  },
+  {
+    "placement_id": 1006,
+    "client_id": 2,
+    "worker_id": 106,
+    "vendor_id": 4,
+    "status": "Active"
+  },
+  {
+    "placement_id": 1007,
+    "client_id": 2,
+    "worker_id": 107,
+    "vendor_id": null,
+    "status": "Active"
+  },
+  {
+    "placement_id": 1008,
+    "client_id": 3,
+    "worker_id": 108,
+    "vendor_id": null,
+    "status": "Active"
+  },
+  {
+    "placement_id": 1009,
+    "client_id": 3,
+    "worker_id": 109,
+    "vendor_id": 2,
+    "status": "Active"
+  },
+  {
+    "placement_id": 1010,
+    "client_id": 3,
+    "worker_id": 110,
+    "vendor_id": null,
+    "status": "Active"
+  }
+]

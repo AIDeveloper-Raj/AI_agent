@@ -1,0 +1,23 @@
+[
+  {
+    "inv_detail_id": 1,
+    "invoice_id": "INV-2026-001",
+    "placement_id": 1001,
+    "description": "Services",
+    "amount": 18500.0
+  },
+  {
+    "inv_detail_id": 2,
+    "invoice_id": "INV-2026-002",
+    "placement_id": 1002,
+    "description": "Services",
+    "amount": 14200.0
+  },
+  {
+    "inv_detail_id": 3,
+    "invoice_id": "INV-2026-003",
+    "placement_id": 1005,
+    "description": "Services",
+    "amount": 9400.0
+  }
+]

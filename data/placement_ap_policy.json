@@ -1,0 +1,27 @@
+[
+  {
+    "placement_id": 1001,
+    "payment_cycle": "Semi-Monthly",
+    "terms": "Net 15"
+  },
+  {
+    "placement_id": 1003,
+    "payment_cycle": "Semi-Monthly",
+    "terms": "Net 15"
+  },
+  {
+    "placement_id": 1005,
+    "payment_cycle": "Semi-Monthly",
+    "terms": "Net 15"
+  },
+  {
+    "placement_id": 1006,
+    "payment_cycle": "Semi-Monthly",
+    "terms": "Net 15"
+  },
+  {
+    "placement_id": 1009,
+    "payment_cycle": "Semi-Monthly",
+    "terms": "Net 15"
+  }
+]

@@ -1,50 +1,49 @@
-from fastapi import FastAPI
-from fastapi.responses import FileResponse
+from fastapi import FastAPI, Request
+from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
+from fastapi.middleware.cors import CORSMiddleware
 from pathlib import Path
 
-app = FastAPI()
+# Import your new hardcoded logic
+from backend.orchestrator import handle_message
+
+app = FastAPI(title="FiAi Backend API")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-FRONTEND_DIR = BASE_DIR / "frontend"
+# 1. Mount the frontend directory so CSS and JS load properly
+app.mount("/static", StaticFiles(directory=BASE_DIR / "frontend"), name="static")
 
-# Serve CSS + JS
-app.mount("/frontend", StaticFiles(directory=FRONTEND_DIR), name="frontend")
+# 2. Add a route for the root page (index.html)
+@app.get("/", response_class=HTMLResponse)
+async def serve_index():
+    file_path = BASE_DIR / "frontend" / "index.html"
+    if file_path.exists():
+        return file_path.read_text(encoding="utf-8")
+    return "<h1>Error: index.html not found</h1>"
 
+# 3. Add the missing route for the /finance page
+@app.get("/finance", response_class=HTMLResponse)
+async def serve_finance():
+    file_path = BASE_DIR / "frontend" / "finance.html"
+    if file_path.exists():
+        return file_path.read_text(encoding="utf-8")
+    return "<h1>Error: finance.html not found</h1>"
 
-# --------------------
-# UI Routes
-# --------------------
-
-@app.get("/")
-def landing():
-    return FileResponse(FRONTEND_DIR / "index.html")
-
-
-@app.get("/finance")
-def finance():
-    return FileResponse(FRONTEND_DIR / "finance.html")
-
-
-@app.get("/health")
-def health():
-    return {"status": "ok"}
-
-
-# --------------------
-# API Routes
-# --------------------
-
-from pydantic import BaseModel
-from backend.orchestrator import handle_message
-
-
-class ChatRequest(BaseModel):
-    message: str
-
-
+# 4. Your API endpoint for the chat
 @app.post("/api/orchestrate")
-async def orchestrate(req: ChatRequest):
-    response = handle_message(req.message)
-    return response
+async def orchestrate(request: Request):
+    data = await request.json()
+    user_message = data.get("message", "")
+    
+    # Send to your new Python logic tree
+    agent_response = handle_message(user_message)
+    return agent_response

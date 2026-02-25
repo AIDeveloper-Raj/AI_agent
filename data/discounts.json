@@ -1,1 +1,16 @@
-[]
+[
+  {
+    "discount_id": 1,
+    "client_id": 1,
+    "type": "Volume",
+    "percentage": 5.0,
+    "status": "Active"
+  },
+  {
+    "discount_id": 2,
+    "client_id": 2,
+    "type": "Early Payment",
+    "percentage": 2.0,
+    "status": "Active"
+  }
+]

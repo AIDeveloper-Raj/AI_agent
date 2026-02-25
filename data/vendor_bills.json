@@ -1,0 +1,16 @@
+[
+  {
+    "bill_id": "BILL-2026-001",
+    "vendor_id": 1,
+    "status": "Paid",
+    "total_amount": 12950.0,
+    "issue_date": "2026-01-01"
+  },
+  {
+    "bill_id": "BILL-2026-002",
+    "vendor_id": 2,
+    "status": "Due",
+    "total_amount": 7100.0,
+    "issue_date": "2026-01-15"
+  }
+]

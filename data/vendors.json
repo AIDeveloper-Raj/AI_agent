@@ -1,0 +1,22 @@
+[
+  {
+    "vendor_id": 1,
+    "name": "Rajesh Jonnalagadda",
+    "type": "1099 Independent"
+  },
+  {
+    "vendor_id": 2,
+    "name": "TechStaff Inc",
+    "type": "C2C Firm"
+  },
+  {
+    "vendor_id": 3,
+    "name": "CloudWorks LLC",
+    "type": "C2C Firm"
+  },
+  {
+    "vendor_id": 4,
+    "name": "Michael Chen",
+    "type": "1099 Independent"
+  }
+]

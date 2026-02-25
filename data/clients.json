@@ -1,10 +1,20 @@
 [
   {
-    "id": 1,
+    "client_id": 1,
+    "name": "Google",
+    "industry": "Tech",
+    "payment_terms": "Net 30"
+  },
+  {
+    "client_id": 2,
     "name": "Client ABC",
-    "invoice_frequency": "weekly",
-    "billing_email": "billing@abc.com",
-    "billing_address": "123 Business Ave",
-    "qb_enabled": false
+    "industry": "Finance",
+    "payment_terms": "Net 15"
+  },
+  {
+    "client_id": 3,
+    "name": "TechCorp",
+    "industry": "Software",
+    "payment_terms": "Net 30"
   }
 ]

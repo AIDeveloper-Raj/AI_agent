@@ -3,8 +3,8 @@ async function send() {
 
     const res = await fetch("/api/orchestrate", {
         method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({message: msg})
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: msg })
     });
 
     const data = await res.json();

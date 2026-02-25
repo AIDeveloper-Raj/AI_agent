@@ -1,0 +1,182 @@
+[
+  {
+    "placement_id": 1001,
+    "pay_code": "Standard",
+    "bill_rate": 120,
+    "pay_rate": 84.0
+  },
+  {
+    "placement_id": 1001,
+    "pay_code": "OT",
+    "bill_rate": 180.0,
+    "pay_rate": 126.0
+  },
+  {
+    "placement_id": 1001,
+    "pay_code": "DT",
+    "bill_rate": 240.0,
+    "pay_rate": 168.0
+  },
+  {
+    "placement_id": 1002,
+    "pay_code": "Standard",
+    "bill_rate": 120,
+    "pay_rate": 84.0
+  },
+  {
+    "placement_id": 1002,
+    "pay_code": "OT",
+    "bill_rate": 180.0,
+    "pay_rate": 126.0
+  },
+  {
+    "placement_id": 1002,
+    "pay_code": "DT",
+    "bill_rate": 240.0,
+    "pay_rate": 168.0
+  },
+  {
+    "placement_id": 1003,
+    "pay_code": "Standard",
+    "bill_rate": 80,
+    "pay_rate": 56.0
+  },
+  {
+    "placement_id": 1003,
+    "pay_code": "OT",
+    "bill_rate": 120.0,
+    "pay_rate": 84.0
+  },
+  {
+    "placement_id": 1003,
+    "pay_code": "DT",
+    "bill_rate": 160.0,
+    "pay_rate": 112.0
+  },
+  {
+    "placement_id": 1004,
+    "pay_code": "Standard",
+    "bill_rate": 150,
+    "pay_rate": 105.0
+  },
+  {
+    "placement_id": 1004,
+    "pay_code": "OT",
+    "bill_rate": 225.0,
+    "pay_rate": 157.5
+  },
+  {
+    "placement_id": 1004,
+    "pay_code": "DT",
+    "bill_rate": 300.0,
+    "pay_rate": 210.0
+  },
+  {
+    "placement_id": 1005,
+    "pay_code": "Standard",
+    "bill_rate": 100,
+    "pay_rate": 70.0
+  },
+  {
+    "placement_id": 1005,
+    "pay_code": "OT",
+    "bill_rate": 150.0,
+    "pay_rate": 105.0
+  },
+  {
+    "placement_id": 1005,
+    "pay_code": "DT",
+    "bill_rate": 200.0,
+    "pay_rate": 140.0
+  },
+  {
+    "placement_id": 1006,
+    "pay_code": "Standard",
+    "bill_rate": 100,
+    "pay_rate": 70.0
+  },
+  {
+    "placement_id": 1006,
+    "pay_code": "OT",
+    "bill_rate": 150.0,
+    "pay_rate": 105.0
+  },
+  {
+    "placement_id": 1006,
+    "pay_code": "DT",
+    "bill_rate": 200.0,
+    "pay_rate": 140.0
+  },
+  {
+    "placement_id": 1007,
+    "pay_code": "Standard",
+    "bill_rate": 120,
+    "pay_rate": 84.0
+  },
+  {
+    "placement_id": 1007,
+    "pay_code": "OT",
+    "bill_rate": 180.0,
+    "pay_rate": 126.0
+  },
+  {
+    "placement_id": 1007,
+    "pay_code": "DT",
+    "bill_rate": 240.0,
+    "pay_rate": 168.0
+  },
+  {
+    "placement_id": 1008,
+    "pay_code": "Standard",
+    "bill_rate": 100,
+    "pay_rate": 70.0
+  },
+  {
+    "placement_id": 1008,
+    "pay_code": "OT",
+    "bill_rate": 150.0,
+    "pay_rate": 105.0
+  },
+  {
+    "placement_id": 1008,
+    "pay_code": "DT",
+    "bill_rate": 200.0,
+    "pay_rate": 140.0
+  },
+  {
+    "placement_id": 1009,
+    "pay_code": "Standard",
+    "bill_rate": 100,
+    "pay_rate": 70.0
+  },
+  {
+    "placement_id": 1009,
+    "pay_code": "OT",
+    "bill_rate": 150.0,
+    "pay_rate": 105.0
+  },
+  {
+    "placement_id": 1009,
+    "pay_code": "DT",
+    "bill_rate": 200.0,
+    "pay_rate": 140.0
+  },
+  {
+    "placement_id": 1010,
+    "pay_code": "Standard",
+    "bill_rate": 120,
+    "pay_rate": 84.0
+  },
+  {
+    "placement_id": 1010,
+    "pay_code": "OT",
+    "bill_rate": 180.0,
+    "pay_rate": 126.0
+  },
+  {
+    "placement_id": 1010,
+    "pay_code": "DT",
+    "bill_rate": 240.0,
+    "pay_rate": 168.0
+  }
+]

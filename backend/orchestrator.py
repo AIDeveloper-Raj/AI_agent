@@ -1,86 +1,82 @@
 import json
-from pathlib import Path
+import os
+from openai import OpenAI
+from dotenv import load_dotenv
 
-BASE_DIR = Path(__file__).resolve().parent.parent
-DATA_DIR = BASE_DIR / "data"
+from backend.prompts import FINANCE_SYSTEM_PROMPT
+from backend.tools import scan_pending_billing, draft_ar_invoice, draft_ap_bill, FINANCE_TOOLS 
 
+load_dotenv()
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-def load_json(name):
-    with open(DATA_DIR / name, "r") as f:
-        return json.load(f)
+AVAILABLE_TOOLS = {
+    "scan_pending_billing": scan_pending_billing,
+    "draft_ar_invoice": draft_ar_invoice,
+    "draft_ap_bill": draft_ap_bill
+}
 
+# Add a simple global memory for the POC
+CHAT_HISTORY = []
 
 def handle_message(message: str):
-    message_lower = message.lower()
+    global CHAT_HISTORY
+    
+    # 1. Build the context with memory
+    messages = [{"role": "system", "content": FINANCE_SYSTEM_PROMPT}]
+    
+    # Inject recent history (last 6 messages to keep context window clean)
+    for msg in CHAT_HISTORY[-6:]:
+        messages.append(msg)
+        
+    # Add current message
+    messages.append({"role": "user", "content": message})
 
-    # Load data
-    clients = load_json("clients.json")
-    placements = load_json("placements.json")
-    timesheets = load_json("timesheets.json")
+    max_loops = 5 
+    loop_count = 0
 
-    # Simple intent detection
-    if "invoice" in message_lower:
+    while loop_count < max_loops:
+        try:
+            response = client.chat.completions.create(
+                model="gpt-4o",
+                response_format={ "type": "json_object" },
+                messages=messages,
+                tools=FINANCE_TOOLS,
+                tool_choice="auto",
+                temperature=0.1
+            )
+            
+            response_message = response.choices[0].message
+            
+            if response_message.tool_calls:
+                messages.append(response_message)
+                for tool_call in response_message.tool_calls:
+                    func_name = tool_call.function.name
+                    func_args = json.loads(tool_call.function.arguments)
+                    
+                    print(f"🤖 Agent executing: {func_name} with args {func_args}")
+                    
+                    function_to_call = AVAILABLE_TOOLS.get(func_name)
+                    if function_to_call:
+                        func_response = function_to_call(**func_args)
+                        messages.append({
+                            "tool_call_id": tool_call.id,
+                            "role": "tool",
+                            "name": func_name,
+                            "content": json.dumps(func_response),
+                        })
+                loop_count += 1
+                continue 
 
-        # Check if client mentioned
-        for client in clients:
-            if client["name"].lower() in message_lower:
-                return {
-                    "intent": "GENERATE_AR_DRAFT",
-                    "narration": f"Client {client['name']} detected. Preparing billing cycle evaluation.",
-                    "missing": {},
-                    "suggestions": {},
-                    "next_question": None,
-                    "canvas_events": [
-                        {"type": "progress", "title": "Resolving client", "status": "success"}
-                    ],
-                    "artifacts": {"invoice_drafts": [], "ap_drafts": []},
-                    "next_actions": [],
-                }
-
-        # No client found — suggest top invoiceable clients
-        invoiceable_clients = []
-
-        for ts in timesheets:
-            if ts["status"] == "APPROVED" and ts["invoiced_flag"] == 0:
-                placement_id = ts["placement_id"]
-                for p in placements:
-                    if p["id"] == placement_id:
-                        client_id = p["client_id"]
-                        for c in clients:
-                            if c["id"] == client_id:
-                                invoiceable_clients.append(c["name"])
-
-        top5 = list(set(invoiceable_clients))[:5]
-
-        return {
-            "intent": "ASK_CLARIFY_CLIENT",
-            "narration": (
-                "I need the client to generate the invoice. "
-                "Here are clients with approved, not-yet-invoiced timesheets."
-            ),
-            "missing": {"client": "Client required"},
-            "suggestions": {
-                "client": [{"label": name, "value": name} for name in top5]
-            },
-            "next_question": {
-                "text": "Which client should I invoice?",
-                "options": [{"label": name, "value": name} for name in top5],
-            },
-            "canvas_events": [
-                {"type": "progress", "title": "Understanding request", "status": "success"},
-                {"type": "warning", "title": "Missing client", "status": "success"},
-            ],
-            "artifacts": {"invoice_drafts": [], "ap_drafts": []},
-            "next_actions": [],
-        }
-
-    return {
-        "intent": "UNKNOWN",
-        "narration": "I didn't understand that request.",
-        "missing": {},
-        "suggestions": {},
-        "next_question": None,
-        "canvas_events": [],
-        "artifacts": {"invoice_drafts": [], "ap_drafts": []},
-        "next_actions": [],
-    }
+            final_json = json.loads(response_message.content)
+            
+            # 2. Save the successful interaction to memory
+            CHAT_HISTORY.append({"role": "user", "content": message})
+            CHAT_HISTORY.append({"role": "assistant", "content": final_json.get("narration", "")})
+            
+            return final_json
+            
+        except Exception as e:
+            print(f"Error: {e}")
+            return {"intent": "ERROR", "narration": "System error occurred.", "artifacts": {"invoice_drafts": []}}
+            
+    return {"intent": "ERROR", "narration": "Timeout.", "artifacts": {"invoice_drafts": []}}

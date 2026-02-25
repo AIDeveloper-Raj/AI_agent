@@ -1,0 +1,2431 @@
+[
+  {
+    "detail_id": 10001,
+    "ts_id": 5001,
+    "date": "2026-01-05",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10002,
+    "ts_id": 5001,
+    "date": "2026-01-06",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10003,
+    "ts_id": 5001,
+    "date": "2026-01-07",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10004,
+    "ts_id": 5001,
+    "date": "2026-01-07",
+    "pay_code": "OT",
+    "hours": 4
+  },
+  {
+    "detail_id": 10005,
+    "ts_id": 5001,
+    "date": "2026-01-08",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10006,
+    "ts_id": 5001,
+    "date": "2026-01-08",
+    "pay_code": "OT",
+    "hours": 2
+  },
+  {
+    "detail_id": 10007,
+    "ts_id": 5001,
+    "date": "2026-01-09",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10008,
+    "ts_id": 5001,
+    "date": "2026-01-09",
+    "pay_code": "OT",
+    "hours": 4
+  },
+  {
+    "detail_id": 10009,
+    "ts_id": 5002,
+    "date": "2026-01-12",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10010,
+    "ts_id": 5002,
+    "date": "2026-01-12",
+    "pay_code": "OT",
+    "hours": 4
+  },
+  {
+    "detail_id": 10011,
+    "ts_id": 5002,
+    "date": "2026-01-13",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10012,
+    "ts_id": 5002,
+    "date": "2026-01-14",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10013,
+    "ts_id": 5002,
+    "date": "2026-01-15",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10014,
+    "ts_id": 5002,
+    "date": "2026-01-16",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10015,
+    "ts_id": 5003,
+    "date": "2026-01-19",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10016,
+    "ts_id": 5003,
+    "date": "2026-01-19",
+    "pay_code": "OT",
+    "hours": 2
+  },
+  {
+    "detail_id": 10017,
+    "ts_id": 5003,
+    "date": "2026-01-20",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10018,
+    "ts_id": 5003,
+    "date": "2026-01-21",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10019,
+    "ts_id": 5003,
+    "date": "2026-01-21",
+    "pay_code": "OT",
+    "hours": 4
+  },
+  {
+    "detail_id": 10020,
+    "ts_id": 5003,
+    "date": "2026-01-22",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10021,
+    "ts_id": 5003,
+    "date": "2026-01-23",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10022,
+    "ts_id": 5004,
+    "date": "2026-01-26",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10023,
+    "ts_id": 5004,
+    "date": "2026-01-27",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10024,
+    "ts_id": 5004,
+    "date": "2026-01-28",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10025,
+    "ts_id": 5004,
+    "date": "2026-01-29",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10026,
+    "ts_id": 5004,
+    "date": "2026-01-30",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10027,
+    "ts_id": 5004,
+    "date": "2026-01-30",
+    "pay_code": "OT",
+    "hours": 2
+  },
+  {
+    "detail_id": 10028,
+    "ts_id": 5005,
+    "date": "2026-02-02",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10029,
+    "ts_id": 5005,
+    "date": "2026-02-02",
+    "pay_code": "OT",
+    "hours": 2
+  },
+  {
+    "detail_id": 10030,
+    "ts_id": 5005,
+    "date": "2026-02-03",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10031,
+    "ts_id": 5005,
+    "date": "2026-02-04",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10032,
+    "ts_id": 5005,
+    "date": "2026-02-04",
+    "pay_code": "OT",
+    "hours": 2
+  },
+  {
+    "detail_id": 10033,
+    "ts_id": 5005,
+    "date": "2026-02-05",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10034,
+    "ts_id": 5005,
+    "date": "2026-02-06",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10035,
+    "ts_id": 5005,
+    "date": "2026-02-06",
+    "pay_code": "OT",
+    "hours": 2
+  },
+  {
+    "detail_id": 10036,
+    "ts_id": 5006,
+    "date": "2026-01-05",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10037,
+    "ts_id": 5006,
+    "date": "2026-01-05",
+    "pay_code": "OT",
+    "hours": 4
+  },
+  {
+    "detail_id": 10038,
+    "ts_id": 5006,
+    "date": "2026-01-06",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10039,
+    "ts_id": 5006,
+    "date": "2026-01-07",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10040,
+    "ts_id": 5006,
+    "date": "2026-01-08",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10041,
+    "ts_id": 5006,
+    "date": "2026-01-09",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10042,
+    "ts_id": 5007,
+    "date": "2026-01-12",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10043,
+    "ts_id": 5007,
+    "date": "2026-01-13",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10044,
+    "ts_id": 5007,
+    "date": "2026-01-14",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10045,
+    "ts_id": 5007,
+    "date": "2026-01-14",
+    "pay_code": "OT",
+    "hours": 4
+  },
+  {
+    "detail_id": 10046,
+    "ts_id": 5007,
+    "date": "2026-01-15",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10047,
+    "ts_id": 5007,
+    "date": "2026-01-15",
+    "pay_code": "OT",
+    "hours": 4
+  },
+  {
+    "detail_id": 10048,
+    "ts_id": 5007,
+    "date": "2026-01-16",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10049,
+    "ts_id": 5008,
+    "date": "2026-01-19",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10050,
+    "ts_id": 5008,
+    "date": "2026-01-20",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10051,
+    "ts_id": 5008,
+    "date": "2026-01-21",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10052,
+    "ts_id": 5008,
+    "date": "2026-01-21",
+    "pay_code": "OT",
+    "hours": 2
+  },
+  {
+    "detail_id": 10053,
+    "ts_id": 5008,
+    "date": "2026-01-22",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10054,
+    "ts_id": 5008,
+    "date": "2026-01-23",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10055,
+    "ts_id": 5008,
+    "date": "2026-01-23",
+    "pay_code": "OT",
+    "hours": 4
+  },
+  {
+    "detail_id": 10056,
+    "ts_id": 5009,
+    "date": "2026-01-26",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10057,
+    "ts_id": 5009,
+    "date": "2026-01-27",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10058,
+    "ts_id": 5009,
+    "date": "2026-01-27",
+    "pay_code": "OT",
+    "hours": 4
+  },
+  {
+    "detail_id": 10059,
+    "ts_id": 5009,
+    "date": "2026-01-28",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10060,
+    "ts_id": 5009,
+    "date": "2026-01-28",
+    "pay_code": "OT",
+    "hours": 4
+  },
+  {
+    "detail_id": 10061,
+    "ts_id": 5009,
+    "date": "2026-01-29",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10062,
+    "ts_id": 5009,
+    "date": "2026-01-30",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10063,
+    "ts_id": 5010,
+    "date": "2026-02-02",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10064,
+    "ts_id": 5010,
+    "date": "2026-02-02",
+    "pay_code": "OT",
+    "hours": 2
+  },
+  {
+    "detail_id": 10065,
+    "ts_id": 5010,
+    "date": "2026-02-03",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10066,
+    "ts_id": 5010,
+    "date": "2026-02-03",
+    "pay_code": "OT",
+    "hours": 2
+  },
+  {
+    "detail_id": 10067,
+    "ts_id": 5010,
+    "date": "2026-02-04",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10068,
+    "ts_id": 5010,
+    "date": "2026-02-04",
+    "pay_code": "OT",
+    "hours": 2
+  },
+  {
+    "detail_id": 10069,
+    "ts_id": 5010,
+    "date": "2026-02-05",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10070,
+    "ts_id": 5010,
+    "date": "2026-02-06",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10071,
+    "ts_id": 5011,
+    "date": "2026-01-05",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10072,
+    "ts_id": 5011,
+    "date": "2026-01-06",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10073,
+    "ts_id": 5011,
+    "date": "2026-01-07",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10074,
+    "ts_id": 5011,
+    "date": "2026-01-08",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10075,
+    "ts_id": 5011,
+    "date": "2026-01-09",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10076,
+    "ts_id": 5012,
+    "date": "2026-01-12",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10077,
+    "ts_id": 5012,
+    "date": "2026-01-12",
+    "pay_code": "OT",
+    "hours": 4
+  },
+  {
+    "detail_id": 10078,
+    "ts_id": 5012,
+    "date": "2026-01-13",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10079,
+    "ts_id": 5012,
+    "date": "2026-01-14",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10080,
+    "ts_id": 5012,
+    "date": "2026-01-14",
+    "pay_code": "OT",
+    "hours": 4
+  },
+  {
+    "detail_id": 10081,
+    "ts_id": 5012,
+    "date": "2026-01-15",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10082,
+    "ts_id": 5012,
+    "date": "2026-01-16",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10083,
+    "ts_id": 5013,
+    "date": "2026-01-19",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10084,
+    "ts_id": 5013,
+    "date": "2026-01-19",
+    "pay_code": "OT",
+    "hours": 2
+  },
+  {
+    "detail_id": 10085,
+    "ts_id": 5013,
+    "date": "2026-01-20",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10086,
+    "ts_id": 5013,
+    "date": "2026-01-21",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10087,
+    "ts_id": 5013,
+    "date": "2026-01-22",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10088,
+    "ts_id": 5013,
+    "date": "2026-01-23",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10089,
+    "ts_id": 5014,
+    "date": "2026-01-26",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10090,
+    "ts_id": 5014,
+    "date": "2026-01-26",
+    "pay_code": "OT",
+    "hours": 2
+  },
+  {
+    "detail_id": 10091,
+    "ts_id": 5014,
+    "date": "2026-01-27",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10092,
+    "ts_id": 5014,
+    "date": "2026-01-27",
+    "pay_code": "OT",
+    "hours": 2
+  },
+  {
+    "detail_id": 10093,
+    "ts_id": 5014,
+    "date": "2026-01-28",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10094,
+    "ts_id": 5014,
+    "date": "2026-01-28",
+    "pay_code": "OT",
+    "hours": 2
+  },
+  {
+    "detail_id": 10095,
+    "ts_id": 5014,
+    "date": "2026-01-29",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10096,
+    "ts_id": 5014,
+    "date": "2026-01-30",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10097,
+    "ts_id": 5015,
+    "date": "2026-02-02",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10098,
+    "ts_id": 5015,
+    "date": "2026-02-02",
+    "pay_code": "OT",
+    "hours": 2
+  },
+  {
+    "detail_id": 10099,
+    "ts_id": 5015,
+    "date": "2026-02-03",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10100,
+    "ts_id": 5015,
+    "date": "2026-02-03",
+    "pay_code": "OT",
+    "hours": 2
+  },
+  {
+    "detail_id": 10101,
+    "ts_id": 5015,
+    "date": "2026-02-04",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10102,
+    "ts_id": 5015,
+    "date": "2026-02-05",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10103,
+    "ts_id": 5015,
+    "date": "2026-02-05",
+    "pay_code": "OT",
+    "hours": 2
+  },
+  {
+    "detail_id": 10104,
+    "ts_id": 5015,
+    "date": "2026-02-06",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10105,
+    "ts_id": 5015,
+    "date": "2026-02-06",
+    "pay_code": "OT",
+    "hours": 4
+  },
+  {
+    "detail_id": 10106,
+    "ts_id": 5016,
+    "date": "2026-01-05",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10107,
+    "ts_id": 5016,
+    "date": "2026-01-06",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10108,
+    "ts_id": 5016,
+    "date": "2026-01-07",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10109,
+    "ts_id": 5016,
+    "date": "2026-01-08",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10110,
+    "ts_id": 5016,
+    "date": "2026-01-09",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10111,
+    "ts_id": 5017,
+    "date": "2026-01-12",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10112,
+    "ts_id": 5017,
+    "date": "2026-01-12",
+    "pay_code": "OT",
+    "hours": 2
+  },
+  {
+    "detail_id": 10113,
+    "ts_id": 5017,
+    "date": "2026-01-13",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10114,
+    "ts_id": 5017,
+    "date": "2026-01-13",
+    "pay_code": "OT",
+    "hours": 4
+  },
+  {
+    "detail_id": 10115,
+    "ts_id": 5017,
+    "date": "2026-01-14",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10116,
+    "ts_id": 5017,
+    "date": "2026-01-15",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10117,
+    "ts_id": 5017,
+    "date": "2026-01-16",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10118,
+    "ts_id": 5018,
+    "date": "2026-01-19",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10119,
+    "ts_id": 5018,
+    "date": "2026-01-19",
+    "pay_code": "OT",
+    "hours": 4
+  },
+  {
+    "detail_id": 10120,
+    "ts_id": 5018,
+    "date": "2026-01-20",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10121,
+    "ts_id": 5018,
+    "date": "2026-01-21",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10122,
+    "ts_id": 5018,
+    "date": "2026-01-21",
+    "pay_code": "OT",
+    "hours": 4
+  },
+  {
+    "detail_id": 10123,
+    "ts_id": 5018,
+    "date": "2026-01-22",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10124,
+    "ts_id": 5018,
+    "date": "2026-01-22",
+    "pay_code": "OT",
+    "hours": 4
+  },
+  {
+    "detail_id": 10125,
+    "ts_id": 5018,
+    "date": "2026-01-23",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10126,
+    "ts_id": 5018,
+    "date": "2026-01-23",
+    "pay_code": "OT",
+    "hours": 2
+  },
+  {
+    "detail_id": 10127,
+    "ts_id": 5019,
+    "date": "2026-01-26",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10128,
+    "ts_id": 5019,
+    "date": "2026-01-26",
+    "pay_code": "OT",
+    "hours": 2
+  },
+  {
+    "detail_id": 10129,
+    "ts_id": 5019,
+    "date": "2026-01-27",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10130,
+    "ts_id": 5019,
+    "date": "2026-01-27",
+    "pay_code": "OT",
+    "hours": 2
+  },
+  {
+    "detail_id": 10131,
+    "ts_id": 5019,
+    "date": "2026-01-28",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10132,
+    "ts_id": 5019,
+    "date": "2026-01-28",
+    "pay_code": "OT",
+    "hours": 4
+  },
+  {
+    "detail_id": 10133,
+    "ts_id": 5019,
+    "date": "2026-01-29",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10134,
+    "ts_id": 5019,
+    "date": "2026-01-29",
+    "pay_code": "OT",
+    "hours": 2
+  },
+  {
+    "detail_id": 10135,
+    "ts_id": 5019,
+    "date": "2026-01-30",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10136,
+    "ts_id": 5020,
+    "date": "2026-02-02",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10137,
+    "ts_id": 5020,
+    "date": "2026-02-02",
+    "pay_code": "OT",
+    "hours": 2
+  },
+  {
+    "detail_id": 10138,
+    "ts_id": 5020,
+    "date": "2026-02-03",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10139,
+    "ts_id": 5020,
+    "date": "2026-02-04",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10140,
+    "ts_id": 5020,
+    "date": "2026-02-04",
+    "pay_code": "OT",
+    "hours": 2
+  },
+  {
+    "detail_id": 10141,
+    "ts_id": 5020,
+    "date": "2026-02-05",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10142,
+    "ts_id": 5020,
+    "date": "2026-02-06",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10143,
+    "ts_id": 5021,
+    "date": "2026-01-05",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10144,
+    "ts_id": 5021,
+    "date": "2026-01-06",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10145,
+    "ts_id": 5021,
+    "date": "2026-01-06",
+    "pay_code": "OT",
+    "hours": 2
+  },
+  {
+    "detail_id": 10146,
+    "ts_id": 5021,
+    "date": "2026-01-07",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10147,
+    "ts_id": 5021,
+    "date": "2026-01-07",
+    "pay_code": "OT",
+    "hours": 4
+  },
+  {
+    "detail_id": 10148,
+    "ts_id": 5021,
+    "date": "2026-01-08",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10149,
+    "ts_id": 5021,
+    "date": "2026-01-09",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10150,
+    "ts_id": 5022,
+    "date": "2026-01-12",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10151,
+    "ts_id": 5022,
+    "date": "2026-01-13",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10152,
+    "ts_id": 5022,
+    "date": "2026-01-14",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10153,
+    "ts_id": 5022,
+    "date": "2026-01-15",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10154,
+    "ts_id": 5022,
+    "date": "2026-01-15",
+    "pay_code": "OT",
+    "hours": 4
+  },
+  {
+    "detail_id": 10155,
+    "ts_id": 5022,
+    "date": "2026-01-16",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10156,
+    "ts_id": 5022,
+    "date": "2026-01-16",
+    "pay_code": "OT",
+    "hours": 4
+  },
+  {
+    "detail_id": 10157,
+    "ts_id": 5023,
+    "date": "2026-01-19",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10158,
+    "ts_id": 5023,
+    "date": "2026-01-20",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10159,
+    "ts_id": 5023,
+    "date": "2026-01-21",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10160,
+    "ts_id": 5023,
+    "date": "2026-01-22",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10161,
+    "ts_id": 5023,
+    "date": "2026-01-23",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10162,
+    "ts_id": 5023,
+    "date": "2026-01-23",
+    "pay_code": "OT",
+    "hours": 2
+  },
+  {
+    "detail_id": 10163,
+    "ts_id": 5024,
+    "date": "2026-01-26",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10164,
+    "ts_id": 5024,
+    "date": "2026-01-26",
+    "pay_code": "OT",
+    "hours": 2
+  },
+  {
+    "detail_id": 10165,
+    "ts_id": 5024,
+    "date": "2026-01-27",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10166,
+    "ts_id": 5024,
+    "date": "2026-01-28",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10167,
+    "ts_id": 5024,
+    "date": "2026-01-29",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10168,
+    "ts_id": 5024,
+    "date": "2026-01-30",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10169,
+    "ts_id": 5025,
+    "date": "2026-02-02",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10170,
+    "ts_id": 5025,
+    "date": "2026-02-02",
+    "pay_code": "OT",
+    "hours": 4
+  },
+  {
+    "detail_id": 10171,
+    "ts_id": 5025,
+    "date": "2026-02-03",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10172,
+    "ts_id": 5025,
+    "date": "2026-02-03",
+    "pay_code": "OT",
+    "hours": 4
+  },
+  {
+    "detail_id": 10173,
+    "ts_id": 5025,
+    "date": "2026-02-04",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10174,
+    "ts_id": 5025,
+    "date": "2026-02-05",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10175,
+    "ts_id": 5025,
+    "date": "2026-02-06",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10176,
+    "ts_id": 5026,
+    "date": "2026-01-05",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10177,
+    "ts_id": 5026,
+    "date": "2026-01-06",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10178,
+    "ts_id": 5026,
+    "date": "2026-01-06",
+    "pay_code": "OT",
+    "hours": 4
+  },
+  {
+    "detail_id": 10179,
+    "ts_id": 5026,
+    "date": "2026-01-07",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10180,
+    "ts_id": 5026,
+    "date": "2026-01-07",
+    "pay_code": "OT",
+    "hours": 4
+  },
+  {
+    "detail_id": 10181,
+    "ts_id": 5026,
+    "date": "2026-01-08",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10182,
+    "ts_id": 5026,
+    "date": "2026-01-09",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10183,
+    "ts_id": 5026,
+    "date": "2026-01-09",
+    "pay_code": "OT",
+    "hours": 2
+  },
+  {
+    "detail_id": 10184,
+    "ts_id": 5027,
+    "date": "2026-01-12",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10185,
+    "ts_id": 5027,
+    "date": "2026-01-12",
+    "pay_code": "OT",
+    "hours": 4
+  },
+  {
+    "detail_id": 10186,
+    "ts_id": 5027,
+    "date": "2026-01-13",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10187,
+    "ts_id": 5027,
+    "date": "2026-01-14",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10188,
+    "ts_id": 5027,
+    "date": "2026-01-14",
+    "pay_code": "OT",
+    "hours": 4
+  },
+  {
+    "detail_id": 10189,
+    "ts_id": 5027,
+    "date": "2026-01-15",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10190,
+    "ts_id": 5027,
+    "date": "2026-01-16",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10191,
+    "ts_id": 5028,
+    "date": "2026-01-19",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10192,
+    "ts_id": 5028,
+    "date": "2026-01-20",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10193,
+    "ts_id": 5028,
+    "date": "2026-01-21",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10194,
+    "ts_id": 5028,
+    "date": "2026-01-22",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10195,
+    "ts_id": 5028,
+    "date": "2026-01-22",
+    "pay_code": "OT",
+    "hours": 4
+  },
+  {
+    "detail_id": 10196,
+    "ts_id": 5028,
+    "date": "2026-01-23",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10197,
+    "ts_id": 5028,
+    "date": "2026-01-23",
+    "pay_code": "OT",
+    "hours": 2
+  },
+  {
+    "detail_id": 10198,
+    "ts_id": 5029,
+    "date": "2026-01-26",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10199,
+    "ts_id": 5029,
+    "date": "2026-01-26",
+    "pay_code": "OT",
+    "hours": 4
+  },
+  {
+    "detail_id": 10200,
+    "ts_id": 5029,
+    "date": "2026-01-27",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10201,
+    "ts_id": 5029,
+    "date": "2026-01-27",
+    "pay_code": "OT",
+    "hours": 4
+  },
+  {
+    "detail_id": 10202,
+    "ts_id": 5029,
+    "date": "2026-01-28",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10203,
+    "ts_id": 5029,
+    "date": "2026-01-29",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10204,
+    "ts_id": 5029,
+    "date": "2026-01-30",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10205,
+    "ts_id": 5030,
+    "date": "2026-02-02",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10206,
+    "ts_id": 5030,
+    "date": "2026-02-03",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10207,
+    "ts_id": 5030,
+    "date": "2026-02-04",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10208,
+    "ts_id": 5030,
+    "date": "2026-02-04",
+    "pay_code": "OT",
+    "hours": 4
+  },
+  {
+    "detail_id": 10209,
+    "ts_id": 5030,
+    "date": "2026-02-05",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10210,
+    "ts_id": 5030,
+    "date": "2026-02-05",
+    "pay_code": "OT",
+    "hours": 2
+  },
+  {
+    "detail_id": 10211,
+    "ts_id": 5030,
+    "date": "2026-02-06",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10212,
+    "ts_id": 5030,
+    "date": "2026-02-06",
+    "pay_code": "OT",
+    "hours": 4
+  },
+  {
+    "detail_id": 10213,
+    "ts_id": 5031,
+    "date": "2026-01-05",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10214,
+    "ts_id": 5031,
+    "date": "2026-01-06",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10215,
+    "ts_id": 5031,
+    "date": "2026-01-07",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10216,
+    "ts_id": 5031,
+    "date": "2026-01-08",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10217,
+    "ts_id": 5031,
+    "date": "2026-01-09",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10218,
+    "ts_id": 5031,
+    "date": "2026-01-09",
+    "pay_code": "OT",
+    "hours": 4
+  },
+  {
+    "detail_id": 10219,
+    "ts_id": 5032,
+    "date": "2026-01-12",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10220,
+    "ts_id": 5032,
+    "date": "2026-01-13",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10221,
+    "ts_id": 5032,
+    "date": "2026-01-13",
+    "pay_code": "OT",
+    "hours": 2
+  },
+  {
+    "detail_id": 10222,
+    "ts_id": 5032,
+    "date": "2026-01-14",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10223,
+    "ts_id": 5032,
+    "date": "2026-01-15",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10224,
+    "ts_id": 5032,
+    "date": "2026-01-15",
+    "pay_code": "OT",
+    "hours": 2
+  },
+  {
+    "detail_id": 10225,
+    "ts_id": 5032,
+    "date": "2026-01-16",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10226,
+    "ts_id": 5033,
+    "date": "2026-01-19",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10227,
+    "ts_id": 5033,
+    "date": "2026-01-20",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10228,
+    "ts_id": 5033,
+    "date": "2026-01-21",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10229,
+    "ts_id": 5033,
+    "date": "2026-01-22",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10230,
+    "ts_id": 5033,
+    "date": "2026-01-23",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10231,
+    "ts_id": 5034,
+    "date": "2026-01-26",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10232,
+    "ts_id": 5034,
+    "date": "2026-01-27",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10233,
+    "ts_id": 5034,
+    "date": "2026-01-28",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10234,
+    "ts_id": 5034,
+    "date": "2026-01-29",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10235,
+    "ts_id": 5034,
+    "date": "2026-01-30",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10236,
+    "ts_id": 5034,
+    "date": "2026-01-30",
+    "pay_code": "OT",
+    "hours": 2
+  },
+  {
+    "detail_id": 10237,
+    "ts_id": 5035,
+    "date": "2026-02-02",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10238,
+    "ts_id": 5035,
+    "date": "2026-02-02",
+    "pay_code": "OT",
+    "hours": 2
+  },
+  {
+    "detail_id": 10239,
+    "ts_id": 5035,
+    "date": "2026-02-03",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10240,
+    "ts_id": 5035,
+    "date": "2026-02-04",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10241,
+    "ts_id": 5035,
+    "date": "2026-02-05",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10242,
+    "ts_id": 5035,
+    "date": "2026-02-05",
+    "pay_code": "OT",
+    "hours": 4
+  },
+  {
+    "detail_id": 10243,
+    "ts_id": 5035,
+    "date": "2026-02-06",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10244,
+    "ts_id": 5036,
+    "date": "2026-01-05",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10245,
+    "ts_id": 5036,
+    "date": "2026-01-05",
+    "pay_code": "OT",
+    "hours": 2
+  },
+  {
+    "detail_id": 10246,
+    "ts_id": 5036,
+    "date": "2026-01-06",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10247,
+    "ts_id": 5036,
+    "date": "2026-01-06",
+    "pay_code": "OT",
+    "hours": 4
+  },
+  {
+    "detail_id": 10248,
+    "ts_id": 5036,
+    "date": "2026-01-07",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10249,
+    "ts_id": 5036,
+    "date": "2026-01-07",
+    "pay_code": "OT",
+    "hours": 2
+  },
+  {
+    "detail_id": 10250,
+    "ts_id": 5036,
+    "date": "2026-01-08",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10251,
+    "ts_id": 5036,
+    "date": "2026-01-08",
+    "pay_code": "OT",
+    "hours": 4
+  },
+  {
+    "detail_id": 10252,
+    "ts_id": 5036,
+    "date": "2026-01-09",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10253,
+    "ts_id": 5037,
+    "date": "2026-01-12",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10254,
+    "ts_id": 5037,
+    "date": "2026-01-13",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10255,
+    "ts_id": 5037,
+    "date": "2026-01-13",
+    "pay_code": "OT",
+    "hours": 2
+  },
+  {
+    "detail_id": 10256,
+    "ts_id": 5037,
+    "date": "2026-01-14",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10257,
+    "ts_id": 5037,
+    "date": "2026-01-15",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10258,
+    "ts_id": 5037,
+    "date": "2026-01-16",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10259,
+    "ts_id": 5038,
+    "date": "2026-01-19",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10260,
+    "ts_id": 5038,
+    "date": "2026-01-20",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10261,
+    "ts_id": 5038,
+    "date": "2026-01-20",
+    "pay_code": "OT",
+    "hours": 4
+  },
+  {
+    "detail_id": 10262,
+    "ts_id": 5038,
+    "date": "2026-01-21",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10263,
+    "ts_id": 5038,
+    "date": "2026-01-21",
+    "pay_code": "OT",
+    "hours": 2
+  },
+  {
+    "detail_id": 10264,
+    "ts_id": 5038,
+    "date": "2026-01-22",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10265,
+    "ts_id": 5038,
+    "date": "2026-01-22",
+    "pay_code": "OT",
+    "hours": 4
+  },
+  {
+    "detail_id": 10266,
+    "ts_id": 5038,
+    "date": "2026-01-23",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10267,
+    "ts_id": 5038,
+    "date": "2026-01-23",
+    "pay_code": "OT",
+    "hours": 4
+  },
+  {
+    "detail_id": 10268,
+    "ts_id": 5039,
+    "date": "2026-01-26",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10269,
+    "ts_id": 5039,
+    "date": "2026-01-26",
+    "pay_code": "OT",
+    "hours": 2
+  },
+  {
+    "detail_id": 10270,
+    "ts_id": 5039,
+    "date": "2026-01-27",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10271,
+    "ts_id": 5039,
+    "date": "2026-01-28",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10272,
+    "ts_id": 5039,
+    "date": "2026-01-28",
+    "pay_code": "OT",
+    "hours": 4
+  },
+  {
+    "detail_id": 10273,
+    "ts_id": 5039,
+    "date": "2026-01-29",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10274,
+    "ts_id": 5039,
+    "date": "2026-01-29",
+    "pay_code": "OT",
+    "hours": 2
+  },
+  {
+    "detail_id": 10275,
+    "ts_id": 5039,
+    "date": "2026-01-30",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10276,
+    "ts_id": 5040,
+    "date": "2026-02-02",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10277,
+    "ts_id": 5040,
+    "date": "2026-02-03",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10278,
+    "ts_id": 5040,
+    "date": "2026-02-04",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10279,
+    "ts_id": 5040,
+    "date": "2026-02-04",
+    "pay_code": "OT",
+    "hours": 2
+  },
+  {
+    "detail_id": 10280,
+    "ts_id": 5040,
+    "date": "2026-02-05",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10281,
+    "ts_id": 5040,
+    "date": "2026-02-05",
+    "pay_code": "OT",
+    "hours": 2
+  },
+  {
+    "detail_id": 10282,
+    "ts_id": 5040,
+    "date": "2026-02-06",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10283,
+    "ts_id": 5041,
+    "date": "2026-01-05",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10284,
+    "ts_id": 5041,
+    "date": "2026-01-05",
+    "pay_code": "OT",
+    "hours": 2
+  },
+  {
+    "detail_id": 10285,
+    "ts_id": 5041,
+    "date": "2026-01-06",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10286,
+    "ts_id": 5041,
+    "date": "2026-01-07",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10287,
+    "ts_id": 5041,
+    "date": "2026-01-08",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10288,
+    "ts_id": 5041,
+    "date": "2026-01-09",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10289,
+    "ts_id": 5041,
+    "date": "2026-01-09",
+    "pay_code": "OT",
+    "hours": 4
+  },
+  {
+    "detail_id": 10290,
+    "ts_id": 5042,
+    "date": "2026-01-12",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10291,
+    "ts_id": 5042,
+    "date": "2026-01-12",
+    "pay_code": "OT",
+    "hours": 4
+  },
+  {
+    "detail_id": 10292,
+    "ts_id": 5042,
+    "date": "2026-01-13",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10293,
+    "ts_id": 5042,
+    "date": "2026-01-14",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10294,
+    "ts_id": 5042,
+    "date": "2026-01-15",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10295,
+    "ts_id": 5042,
+    "date": "2026-01-16",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10296,
+    "ts_id": 5043,
+    "date": "2026-01-19",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10297,
+    "ts_id": 5043,
+    "date": "2026-01-19",
+    "pay_code": "OT",
+    "hours": 4
+  },
+  {
+    "detail_id": 10298,
+    "ts_id": 5043,
+    "date": "2026-01-20",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10299,
+    "ts_id": 5043,
+    "date": "2026-01-21",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10300,
+    "ts_id": 5043,
+    "date": "2026-01-22",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10301,
+    "ts_id": 5043,
+    "date": "2026-01-23",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10302,
+    "ts_id": 5043,
+    "date": "2026-01-23",
+    "pay_code": "OT",
+    "hours": 4
+  },
+  {
+    "detail_id": 10303,
+    "ts_id": 5044,
+    "date": "2026-01-26",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10304,
+    "ts_id": 5044,
+    "date": "2026-01-27",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10305,
+    "ts_id": 5044,
+    "date": "2026-01-28",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10306,
+    "ts_id": 5044,
+    "date": "2026-01-29",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10307,
+    "ts_id": 5044,
+    "date": "2026-01-29",
+    "pay_code": "OT",
+    "hours": 4
+  },
+  {
+    "detail_id": 10308,
+    "ts_id": 5044,
+    "date": "2026-01-30",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10309,
+    "ts_id": 5044,
+    "date": "2026-01-30",
+    "pay_code": "OT",
+    "hours": 2
+  },
+  {
+    "detail_id": 10310,
+    "ts_id": 5045,
+    "date": "2026-02-02",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10311,
+    "ts_id": 5045,
+    "date": "2026-02-02",
+    "pay_code": "OT",
+    "hours": 4
+  },
+  {
+    "detail_id": 10312,
+    "ts_id": 5045,
+    "date": "2026-02-03",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10313,
+    "ts_id": 5045,
+    "date": "2026-02-03",
+    "pay_code": "OT",
+    "hours": 2
+  },
+  {
+    "detail_id": 10314,
+    "ts_id": 5045,
+    "date": "2026-02-04",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10315,
+    "ts_id": 5045,
+    "date": "2026-02-05",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10316,
+    "ts_id": 5045,
+    "date": "2026-02-06",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10317,
+    "ts_id": 5046,
+    "date": "2026-01-05",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10318,
+    "ts_id": 5046,
+    "date": "2026-01-06",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10319,
+    "ts_id": 5046,
+    "date": "2026-01-07",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10320,
+    "ts_id": 5046,
+    "date": "2026-01-08",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10321,
+    "ts_id": 5046,
+    "date": "2026-01-09",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10322,
+    "ts_id": 5047,
+    "date": "2026-01-12",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10323,
+    "ts_id": 5047,
+    "date": "2026-01-13",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10324,
+    "ts_id": 5047,
+    "date": "2026-01-14",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10325,
+    "ts_id": 5047,
+    "date": "2026-01-15",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10326,
+    "ts_id": 5047,
+    "date": "2026-01-16",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10327,
+    "ts_id": 5048,
+    "date": "2026-01-19",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10328,
+    "ts_id": 5048,
+    "date": "2026-01-19",
+    "pay_code": "OT",
+    "hours": 4
+  },
+  {
+    "detail_id": 10329,
+    "ts_id": 5048,
+    "date": "2026-01-20",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10330,
+    "ts_id": 5048,
+    "date": "2026-01-20",
+    "pay_code": "OT",
+    "hours": 4
+  },
+  {
+    "detail_id": 10331,
+    "ts_id": 5048,
+    "date": "2026-01-21",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10332,
+    "ts_id": 5048,
+    "date": "2026-01-22",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10333,
+    "ts_id": 5048,
+    "date": "2026-01-23",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10334,
+    "ts_id": 5048,
+    "date": "2026-01-23",
+    "pay_code": "OT",
+    "hours": 2
+  },
+  {
+    "detail_id": 10335,
+    "ts_id": 5049,
+    "date": "2026-01-26",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10336,
+    "ts_id": 5049,
+    "date": "2026-01-27",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10337,
+    "ts_id": 5049,
+    "date": "2026-01-28",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10338,
+    "ts_id": 5049,
+    "date": "2026-01-29",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10339,
+    "ts_id": 5049,
+    "date": "2026-01-30",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10340,
+    "ts_id": 5050,
+    "date": "2026-02-02",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10341,
+    "ts_id": 5050,
+    "date": "2026-02-03",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10342,
+    "ts_id": 5050,
+    "date": "2026-02-04",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10343,
+    "ts_id": 5050,
+    "date": "2026-02-04",
+    "pay_code": "OT",
+    "hours": 4
+  },
+  {
+    "detail_id": 10344,
+    "ts_id": 5050,
+    "date": "2026-02-05",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10345,
+    "ts_id": 5050,
+    "date": "2026-02-05",
+    "pay_code": "OT",
+    "hours": 4
+  },
+  {
+    "detail_id": 10346,
+    "ts_id": 5050,
+    "date": "2026-02-06",
+    "pay_code": "Standard",
+    "hours": 8
+  },
+  {
+    "detail_id": 10347,
+    "ts_id": 5050,
+    "date": "2026-02-06",
+    "pay_code": "OT",
+    "hours": 4
+  }
+]

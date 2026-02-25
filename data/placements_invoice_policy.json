@@ -1,0 +1,52 @@
+[
+  {
+    "placement_id": 1001,
+    "billing_cycle": "Monthly",
+    "invoice_format": "Consolidated"
+  },
+  {
+    "placement_id": 1002,
+    "billing_cycle": "Monthly",
+    "invoice_format": "Consolidated"
+  },
+  {
+    "placement_id": 1003,
+    "billing_cycle": "Monthly",
+    "invoice_format": "Consolidated"
+  },
+  {
+    "placement_id": 1004,
+    "billing_cycle": "Monthly",
+    "invoice_format": "Consolidated"
+  },
+  {
+    "placement_id": 1005,
+    "billing_cycle": "Monthly",
+    "invoice_format": "Consolidated"
+  },
+  {
+    "placement_id": 1006,
+    "billing_cycle": "Monthly",
+    "invoice_format": "Consolidated"
+  },
+  {
+    "placement_id": 1007,
+    "billing_cycle": "Monthly",
+    "invoice_format": "Consolidated"
+  },
+  {
+    "placement_id": 1008,
+    "billing_cycle": "Monthly",
+    "invoice_format": "Consolidated"
+  },
+  {
+    "placement_id": 1009,
+    "billing_cycle": "Monthly",
+    "invoice_format": "Consolidated"
+  },
+  {
+    "placement_id": 1010,
+    "billing_cycle": "Monthly",
+    "invoice_format": "Consolidated"
+  }
+]

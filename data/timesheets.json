@@ -1,1 +1,502 @@
-[]
+[
+  {
+    "ts_id": 5001,
+    "placement_id": 1001,
+    "start_date": "2026-01-05",
+    "end_date": "2026-01-11",
+    "status": "APPROVED",
+    "total_hours": 50,
+    "ar_invoiced_flag": 1,
+    "ap_invoiced_flag": 1
+  },
+  {
+    "ts_id": 5002,
+    "placement_id": 1001,
+    "start_date": "2026-01-12",
+    "end_date": "2026-01-18",
+    "status": "APPROVED",
+    "total_hours": 44,
+    "ar_invoiced_flag": 0,
+    "ap_invoiced_flag": 0
+  },
+  {
+    "ts_id": 5003,
+    "placement_id": 1001,
+    "start_date": "2026-01-19",
+    "end_date": "2026-01-25",
+    "status": "SUBMITTED",
+    "total_hours": 46,
+    "ar_invoiced_flag": 0,
+    "ap_invoiced_flag": 0
+  },
+  {
+    "ts_id": 5004,
+    "placement_id": 1001,
+    "start_date": "2026-01-26",
+    "end_date": "2026-02-01",
+    "status": "APPROVED",
+    "total_hours": 42,
+    "ar_invoiced_flag": 0,
+    "ap_invoiced_flag": 1
+  },
+  {
+    "ts_id": 5005,
+    "placement_id": 1001,
+    "start_date": "2026-02-02",
+    "end_date": "2026-02-08",
+    "status": "SUBMITTED",
+    "total_hours": 46,
+    "ar_invoiced_flag": 0,
+    "ap_invoiced_flag": 0
+  },
+  {
+    "ts_id": 5006,
+    "placement_id": 1002,
+    "start_date": "2026-01-05",
+    "end_date": "2026-01-11",
+    "status": "APPROVED",
+    "total_hours": 44,
+    "ar_invoiced_flag": 1,
+    "ap_invoiced_flag": 1
+  },
+  {
+    "ts_id": 5007,
+    "placement_id": 1002,
+    "start_date": "2026-01-12",
+    "end_date": "2026-01-18",
+    "status": "SUBMITTED",
+    "total_hours": 48,
+    "ar_invoiced_flag": 0,
+    "ap_invoiced_flag": 0
+  },
+  {
+    "ts_id": 5008,
+    "placement_id": 1002,
+    "start_date": "2026-01-19",
+    "end_date": "2026-01-25",
+    "status": "APPROVED",
+    "total_hours": 46,
+    "ar_invoiced_flag": 0,
+    "ap_invoiced_flag": 1
+  },
+  {
+    "ts_id": 5009,
+    "placement_id": 1002,
+    "start_date": "2026-01-26",
+    "end_date": "2026-02-01",
+    "status": "APPROVED",
+    "total_hours": 48,
+    "ar_invoiced_flag": 1,
+    "ap_invoiced_flag": 1
+  },
+  {
+    "ts_id": 5010,
+    "placement_id": 1002,
+    "start_date": "2026-02-02",
+    "end_date": "2026-02-08",
+    "status": "APPROVED",
+    "total_hours": 46,
+    "ar_invoiced_flag": 1,
+    "ap_invoiced_flag": 0
+  },
+  {
+    "ts_id": 5011,
+    "placement_id": 1003,
+    "start_date": "2026-01-05",
+    "end_date": "2026-01-11",
+    "status": "APPROVED",
+    "total_hours": 40,
+    "ar_invoiced_flag": 0,
+    "ap_invoiced_flag": 0
+  },
+  {
+    "ts_id": 5012,
+    "placement_id": 1003,
+    "start_date": "2026-01-12",
+    "end_date": "2026-01-18",
+    "status": "SUBMITTED",
+    "total_hours": 48,
+    "ar_invoiced_flag": 0,
+    "ap_invoiced_flag": 0
+  },
+  {
+    "ts_id": 5013,
+    "placement_id": 1003,
+    "start_date": "2026-01-19",
+    "end_date": "2026-01-25",
+    "status": "APPROVED",
+    "total_hours": 42,
+    "ar_invoiced_flag": 0,
+    "ap_invoiced_flag": 0
+  },
+  {
+    "ts_id": 5014,
+    "placement_id": 1003,
+    "start_date": "2026-01-26",
+    "end_date": "2026-02-01",
+    "status": "SUBMITTED",
+    "total_hours": 46,
+    "ar_invoiced_flag": 0,
+    "ap_invoiced_flag": 0
+  },
+  {
+    "ts_id": 5015,
+    "placement_id": 1003,
+    "start_date": "2026-02-02",
+    "end_date": "2026-02-08",
+    "status": "APPROVED",
+    "total_hours": 50,
+    "ar_invoiced_flag": 1,
+    "ap_invoiced_flag": 1
+  },
+  {
+    "ts_id": 5016,
+    "placement_id": 1004,
+    "start_date": "2026-01-05",
+    "end_date": "2026-01-11",
+    "status": "APPROVED",
+    "total_hours": 40,
+    "ar_invoiced_flag": 0,
+    "ap_invoiced_flag": 0
+  },
+  {
+    "ts_id": 5017,
+    "placement_id": 1004,
+    "start_date": "2026-01-12",
+    "end_date": "2026-01-18",
+    "status": "APPROVED",
+    "total_hours": 46,
+    "ar_invoiced_flag": 0,
+    "ap_invoiced_flag": 0
+  },
+  {
+    "ts_id": 5018,
+    "placement_id": 1004,
+    "start_date": "2026-01-19",
+    "end_date": "2026-01-25",
+    "status": "APPROVED",
+    "total_hours": 54,
+    "ar_invoiced_flag": 1,
+    "ap_invoiced_flag": 0
+  },
+  {
+    "ts_id": 5019,
+    "placement_id": 1004,
+    "start_date": "2026-01-26",
+    "end_date": "2026-02-01",
+    "status": "SUBMITTED",
+    "total_hours": 50,
+    "ar_invoiced_flag": 0,
+    "ap_invoiced_flag": 0
+  },
+  {
+    "ts_id": 5020,
+    "placement_id": 1004,
+    "start_date": "2026-02-02",
+    "end_date": "2026-02-08",
+    "status": "APPROVED",
+    "total_hours": 44,
+    "ar_invoiced_flag": 0,
+    "ap_invoiced_flag": 0
+  },
+  {
+    "ts_id": 5021,
+    "placement_id": 1005,
+    "start_date": "2026-01-05",
+    "end_date": "2026-01-11",
+    "status": "APPROVED",
+    "total_hours": 46,
+    "ar_invoiced_flag": 1,
+    "ap_invoiced_flag": 0
+  },
+  {
+    "ts_id": 5022,
+    "placement_id": 1005,
+    "start_date": "2026-01-12",
+    "end_date": "2026-01-18",
+    "status": "APPROVED",
+    "total_hours": 48,
+    "ar_invoiced_flag": 0,
+    "ap_invoiced_flag": 1
+  },
+  {
+    "ts_id": 5023,
+    "placement_id": 1005,
+    "start_date": "2026-01-19",
+    "end_date": "2026-01-25",
+    "status": "APPROVED",
+    "total_hours": 42,
+    "ar_invoiced_flag": 0,
+    "ap_invoiced_flag": 0
+  },
+  {
+    "ts_id": 5024,
+    "placement_id": 1005,
+    "start_date": "2026-01-26",
+    "end_date": "2026-02-01",
+    "status": "SUBMITTED",
+    "total_hours": 42,
+    "ar_invoiced_flag": 0,
+    "ap_invoiced_flag": 0
+  },
+  {
+    "ts_id": 5025,
+    "placement_id": 1005,
+    "start_date": "2026-02-02",
+    "end_date": "2026-02-08",
+    "status": "APPROVED",
+    "total_hours": 48,
+    "ar_invoiced_flag": 1,
+    "ap_invoiced_flag": 1
+  },
+  {
+    "ts_id": 5026,
+    "placement_id": 1006,
+    "start_date": "2026-01-05",
+    "end_date": "2026-01-11",
+    "status": "SUBMITTED",
+    "total_hours": 50,
+    "ar_invoiced_flag": 0,
+    "ap_invoiced_flag": 0
+  },
+  {
+    "ts_id": 5027,
+    "placement_id": 1006,
+    "start_date": "2026-01-12",
+    "end_date": "2026-01-18",
+    "status": "APPROVED",
+    "total_hours": 48,
+    "ar_invoiced_flag": 1,
+    "ap_invoiced_flag": 1
+  },
+  {
+    "ts_id": 5028,
+    "placement_id": 1006,
+    "start_date": "2026-01-19",
+    "end_date": "2026-01-25",
+    "status": "SUBMITTED",
+    "total_hours": 46,
+    "ar_invoiced_flag": 0,
+    "ap_invoiced_flag": 0
+  },
+  {
+    "ts_id": 5029,
+    "placement_id": 1006,
+    "start_date": "2026-01-26",
+    "end_date": "2026-02-01",
+    "status": "APPROVED",
+    "total_hours": 48,
+    "ar_invoiced_flag": 1,
+    "ap_invoiced_flag": 0
+  },
+  {
+    "ts_id": 5030,
+    "placement_id": 1006,
+    "start_date": "2026-02-02",
+    "end_date": "2026-02-08",
+    "status": "SUBMITTED",
+    "total_hours": 50,
+    "ar_invoiced_flag": 0,
+    "ap_invoiced_flag": 0
+  },
+  {
+    "ts_id": 5031,
+    "placement_id": 1007,
+    "start_date": "2026-01-05",
+    "end_date": "2026-01-11",
+    "status": "APPROVED",
+    "total_hours": 44,
+    "ar_invoiced_flag": 0,
+    "ap_invoiced_flag": 0
+  },
+  {
+    "ts_id": 5032,
+    "placement_id": 1007,
+    "start_date": "2026-01-12",
+    "end_date": "2026-01-18",
+    "status": "APPROVED",
+    "total_hours": 44,
+    "ar_invoiced_flag": 0,
+    "ap_invoiced_flag": 1
+  },
+  {
+    "ts_id": 5033,
+    "placement_id": 1007,
+    "start_date": "2026-01-19",
+    "end_date": "2026-01-25",
+    "status": "APPROVED",
+    "total_hours": 40,
+    "ar_invoiced_flag": 1,
+    "ap_invoiced_flag": 1
+  },
+  {
+    "ts_id": 5034,
+    "placement_id": 1007,
+    "start_date": "2026-01-26",
+    "end_date": "2026-02-01",
+    "status": "APPROVED",
+    "total_hours": 42,
+    "ar_invoiced_flag": 1,
+    "ap_invoiced_flag": 0
+  },
+  {
+    "ts_id": 5035,
+    "placement_id": 1007,
+    "start_date": "2026-02-02",
+    "end_date": "2026-02-08",
+    "status": "APPROVED",
+    "total_hours": 46,
+    "ar_invoiced_flag": 1,
+    "ap_invoiced_flag": 1
+  },
+  {
+    "ts_id": 5036,
+    "placement_id": 1008,
+    "start_date": "2026-01-05",
+    "end_date": "2026-01-11",
+    "status": "APPROVED",
+    "total_hours": 52,
+    "ar_invoiced_flag": 0,
+    "ap_invoiced_flag": 1
+  },
+  {
+    "ts_id": 5037,
+    "placement_id": 1008,
+    "start_date": "2026-01-12",
+    "end_date": "2026-01-18",
+    "status": "APPROVED",
+    "total_hours": 42,
+    "ar_invoiced_flag": 0,
+    "ap_invoiced_flag": 0
+  },
+  {
+    "ts_id": 5038,
+    "placement_id": 1008,
+    "start_date": "2026-01-19",
+    "end_date": "2026-01-25",
+    "status": "SUBMITTED",
+    "total_hours": 54,
+    "ar_invoiced_flag": 0,
+    "ap_invoiced_flag": 0
+  },
+  {
+    "ts_id": 5039,
+    "placement_id": 1008,
+    "start_date": "2026-01-26",
+    "end_date": "2026-02-01",
+    "status": "APPROVED",
+    "total_hours": 48,
+    "ar_invoiced_flag": 0,
+    "ap_invoiced_flag": 0
+  },
+  {
+    "ts_id": 5040,
+    "placement_id": 1008,
+    "start_date": "2026-02-02",
+    "end_date": "2026-02-08",
+    "status": "SUBMITTED",
+    "total_hours": 44,
+    "ar_invoiced_flag": 0,
+    "ap_invoiced_flag": 0
+  },
+  {
+    "ts_id": 5041,
+    "placement_id": 1009,
+    "start_date": "2026-01-05",
+    "end_date": "2026-01-11",
+    "status": "APPROVED",
+    "total_hours": 46,
+    "ar_invoiced_flag": 0,
+    "ap_invoiced_flag": 0
+  },
+  {
+    "ts_id": 5042,
+    "placement_id": 1009,
+    "start_date": "2026-01-12",
+    "end_date": "2026-01-18",
+    "status": "APPROVED",
+    "total_hours": 44,
+    "ar_invoiced_flag": 0,
+    "ap_invoiced_flag": 0
+  },
+  {
+    "ts_id": 5043,
+    "placement_id": 1009,
+    "start_date": "2026-01-19",
+    "end_date": "2026-01-25",
+    "status": "SUBMITTED",
+    "total_hours": 48,
+    "ar_invoiced_flag": 0,
+    "ap_invoiced_flag": 0
+  },
+  {
+    "ts_id": 5044,
+    "placement_id": 1009,
+    "start_date": "2026-01-26",
+    "end_date": "2026-02-01",
+    "status": "APPROVED",
+    "total_hours": 46,
+    "ar_invoiced_flag": 0,
+    "ap_invoiced_flag": 1
+  },
+  {
+    "ts_id": 5045,
+    "placement_id": 1009,
+    "start_date": "2026-02-02",
+    "end_date": "2026-02-08",
+    "status": "APPROVED",
+    "total_hours": 46,
+    "ar_invoiced_flag": 0,
+    "ap_invoiced_flag": 1
+  },
+  {
+    "ts_id": 5046,
+    "placement_id": 1010,
+    "start_date": "2026-01-05",
+    "end_date": "2026-01-11",
+    "status": "APPROVED",
+    "total_hours": 40,
+    "ar_invoiced_flag": 0,
+    "ap_invoiced_flag": 0
+  },
+  {
+    "ts_id": 5047,
+    "placement_id": 1010,
+    "start_date": "2026-01-12",
+    "end_date": "2026-01-18",
+    "status": "APPROVED",
+    "total_hours": 40,
+    "ar_invoiced_flag": 0,
+    "ap_invoiced_flag": 0
+  },
+  {
+    "ts_id": 5048,
+    "placement_id": 1010,
+    "start_date": "2026-01-19",
+    "end_date": "2026-01-25",
+    "status": "APPROVED",
+    "total_hours": 50,
+    "ar_invoiced_flag": 0,
+    "ap_invoiced_flag": 1
+  },
+  {
+    "ts_id": 5049,
+    "placement_id": 1010,
+    "start_date": "2026-01-26",
+    "end_date": "2026-02-01",
+    "status": "APPROVED",
+    "total_hours": 40,
+    "ar_invoiced_flag": 0,
+    "ap_invoiced_flag": 0
+  },
+  {
+    "ts_id": 5050,
+    "placement_id": 1010,
+    "start_date": "2026-02-02",
+    "end_date": "2026-02-08",
+    "status": "APPROVED",
+    "total_hours": 52,
+    "ar_invoiced_flag": 0,
+    "ap_invoiced_flag": 0
+  }
+]

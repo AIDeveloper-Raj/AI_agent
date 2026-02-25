@@ -1,0 +1,52 @@
+[
+  {
+    "worker_id": 101,
+    "employment_type": "1099",
+    "vendor_id": 1
+  },
+  {
+    "worker_id": 102,
+    "employment_type": "W-2",
+    "vendor_id": null
+  },
+  {
+    "worker_id": 103,
+    "employment_type": "C2C",
+    "vendor_id": 2
+  },
+  {
+    "worker_id": 104,
+    "employment_type": "W-2",
+    "vendor_id": null
+  },
+  {
+    "worker_id": 105,
+    "employment_type": "C2C",
+    "vendor_id": 3
+  },
+  {
+    "worker_id": 106,
+    "employment_type": "1099",
+    "vendor_id": 4
+  },
+  {
+    "worker_id": 107,
+    "employment_type": "W-2",
+    "vendor_id": null
+  },
+  {
+    "worker_id": 108,
+    "employment_type": "W-2",
+    "vendor_id": null
+  },
+  {
+    "worker_id": 109,
+    "employment_type": "C2C",
+    "vendor_id": 2
+  },
+  {
+    "worker_id": 110,
+    "employment_type": "W-2",
+    "vendor_id": null
+  }
+]

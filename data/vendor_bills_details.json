@@ -1,0 +1,16 @@
+[
+  {
+    "bill_detail_id": 1,
+    "bill_id": "BILL-2026-001",
+    "placement_id": 1001,
+    "description": "Contractor Services",
+    "amount": 12950.0
+  },
+  {
+    "bill_detail_id": 2,
+    "bill_id": "BILL-2026-002",
+    "placement_id": 1003,
+    "description": "Contractor Services",
+    "amount": 7100.0
+  }
+]

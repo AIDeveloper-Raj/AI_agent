@@ -1,0 +1,62 @@
+[
+  {
+    "worker_id": 101,
+    "first_name": "Rajesh",
+    "last_name": "Jonnalagadda",
+    "email": "rajesh@example.com"
+  },
+  {
+    "worker_id": 102,
+    "first_name": "John",
+    "last_name": "Doe",
+    "email": "john@example.com"
+  },
+  {
+    "worker_id": 103,
+    "first_name": "Jane",
+    "last_name": "Smith",
+    "email": "jane@example.com"
+  },
+  {
+    "worker_id": 104,
+    "first_name": "Alice",
+    "last_name": "Brown",
+    "email": "alice@example.com"
+  },
+  {
+    "worker_id": 105,
+    "first_name": "Bob",
+    "last_name": "Wilson",
+    "email": "bob@example.com"
+  },
+  {
+    "worker_id": 106,
+    "first_name": "Michael",
+    "last_name": "Chen",
+    "email": "michael@example.com"
+  },
+  {
+    "worker_id": 107,
+    "first_name": "Sarah",
+    "last_name": "Davis",
+    "email": "sarah@example.com"
+  },
+  {
+    "worker_id": 108,
+    "first_name": "David",
+    "last_name": "Miller",
+    "email": "david@example.com"
+  },
+  {
+    "worker_id": 109,
+    "first_name": "Emily",
+    "last_name": "Taylor",
+    "email": "emily@example.com"
+  },
+  {
+    "worker_id": 110,
+    "first_name": "James",
+    "last_name": "Anderson",
+    "email": "james@example.com"
+  }
+]
