@@ -1,52 +1,52 @@
 [
-  {
-    "exp_id": 8001,
-    "placement_id": 1009,
-    "date": "2026-02-12",
-    "category": "Travel",
-    "amount": 367.68,
-    "status": "APPROVED",
-    "ar_invoiced_flag": 0,
-    "ap_invoiced_flag": 0
-  },
-  {
-    "exp_id": 8002,
-    "placement_id": 1009,
-    "date": "2026-02-12",
-    "category": "Travel",
-    "amount": 140.67,
-    "status": "APPROVED",
-    "ar_invoiced_flag": 0,
-    "ap_invoiced_flag": 0
-  },
-  {
-    "exp_id": 8003,
-    "placement_id": 1003,
-    "date": "2026-02-12",
-    "category": "Travel",
-    "amount": 388.33,
-    "status": "APPROVED",
-    "ar_invoiced_flag": 0,
-    "ap_invoiced_flag": 0
-  },
-  {
-    "exp_id": 8004,
-    "placement_id": 1008,
-    "date": "2026-02-12",
-    "category": "Travel",
-    "amount": 300.02,
-    "status": "APPROVED",
-    "ar_invoiced_flag": 0,
-    "ap_invoiced_flag": 0
-  },
-  {
-    "exp_id": 8005,
-    "placement_id": 1005,
-    "date": "2026-02-12",
-    "category": "Travel",
-    "amount": 334.7,
-    "status": "APPROVED",
-    "ar_invoiced_flag": 0,
-    "ap_invoiced_flag": 0
-  }
+    {
+        "exp_id": 8001,
+        "placement_id": 1009,
+        "date": "2026-02-12",
+        "category": "Travel",
+        "amount": 367.68,
+        "status": "APPROVED",
+        "ar_invoiced_flag": 0,
+        "ap_invoiced_flag": 0
+    },
+    {
+        "exp_id": 8002,
+        "placement_id": 1009,
+        "date": "2026-02-12",
+        "category": "Travel",
+        "amount": 140.67,
+        "status": "APPROVED",
+        "ar_invoiced_flag": 0,
+        "ap_invoiced_flag": 0
+    },
+    {
+        "exp_id": 8003,
+        "placement_id": 1003,
+        "date": "2026-02-12",
+        "category": "Travel",
+        "amount": 388.33,
+        "status": "APPROVED",
+        "ar_invoiced_flag": 0,
+        "ap_invoiced_flag": 0
+    },
+    {
+        "exp_id": 8004,
+        "placement_id": 1008,
+        "date": "2026-02-12",
+        "category": "Travel",
+        "amount": 300.02,
+        "status": "APPROVED",
+        "ar_invoiced_flag": 0,
+        "ap_invoiced_flag": 0
+    },
+    {
+        "exp_id": 8005,
+        "placement_id": 1005,
+        "date": "2026-02-12",
+        "category": "Travel",
+        "amount": 334.7,
+        "status": "APPROVED",
+        "ar_invoiced_flag": 0,
+        "ap_invoiced_flag": 0
+    }
 ]
