@@ -133,7 +133,7 @@
                 <!-- RIGHT: Canvas pane -->
                 <section class="canvas-pane">
                     <div class="canvas-pane__header">
-                        <span class="canvas-pane__title">Finance Orchestrator</span>
+                        <span class="canvas-pane__title">Finance Workspace</span>
                         <span class="canvas-pill" id="canvasStatus">Idle</span>
                     </div>
 
@@ -152,230 +152,404 @@
 
     <link rel="stylesheet" href="/static/style.css">
     <script src="/static/app.js"></script>
-    <script>
-        const threadEl = document.getElementById("thread");
-        const msgEl = document.getElementById("msg");
-        const sendBtn = document.getElementById("send");
-        const statusEl = document.getElementById("canvasStatus");
-        const canvasEl = document.getElementById("canvasContainer");
+<script>
+    if (!document.getElementById('sync-styles')) {
+        const style = document.createElement('style');
+        style.id = 'sync-styles';
+        style.innerHTML = `
+            .step-row { display: flex; align-items: center; margin-bottom: 20px; font-size: 15px; color: #64748b; transition: all 0.3s ease; }
+            .step-icon { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 16px; flex-shrink: 0; font-size: 14px; }
+            .step-pending .step-icon { background: #f1f5f9; color: #cbd5e1; }
+            .step-active { color: #0f172a; font-weight: 600; transform: translateX(5px); }
+            .step-active .step-icon { border: 3px solid #e2e8f0; border-top: 3px solid #2563eb; background: transparent; animation: spin 1s linear infinite; }
+            .step-done { color: #16a34a; font-weight: 500; }
+            .step-done .step-icon { background: #16a34a; color: white; }
+            @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+            .fade-in { animation: fadeIn 0.4s ease-in; }
+            @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+            .status-badge { display: inline-block; padding: 4px 12px; border-radius: 99px; font-size: 12px; font-weight: 700; margin-left: 16px; vertical-align: middle; text-transform: uppercase; letter-spacing: 0.5px; }
+            .badge-draft { background: #fef08a; color: #ca8a04; }
+            .badge-approved { background: #dcfce7; color: #16a34a; }
+            .typing-indicator { display: flex; align-items: center; gap: 4px; padding: 8px 12px; }
+            .typing-indicator span { width: 6px; height: 6px; background-color: #64748b; border-radius: 50%; animation: typing 1.4s infinite ease-in-out; }
+            .typing-indicator span:nth-child(1) { animation-delay: 0s; }
+            .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+            .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+            @keyframes typing { 0%, 100% { transform: scale(1); opacity: 0.5; } 50% { transform: scale(1.5); opacity: 1; } }
+            .canvas-skeleton { padding: 24px; background: #fff; border-radius: 8px; height: 100%; }
+            .skeleton-pulse { animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite; background-color: #e2e8f0; border-radius: 4px; margin-bottom: 12px; }
+            @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .5; } }
+        `;
+        document.head.appendChild(style);
+    }
 
-        // Updated to accept 'options' and render them as buttons
-        function addMsg(who, text, options = null) {
-            if (who === "You") {
-                const d = document.createElement("div");
-                d.className = "bubble you";
-                d.textContent = text;
-                threadEl.appendChild(d);
-            } else {
-                const wrap = document.createElement("div");
-                wrap.className = "agent-block";
+    const threadEl = document.getElementById("thread");
+    const msgEl = document.getElementById("msg");
+    const sendBtn = document.getElementById("send");
+    const statusEl = document.getElementById("canvasStatus") || { textContent: '' };
+    const canvasEl = document.getElementById("canvasContainer");
 
-                const meta = document.createElement("div");
-                meta.className = "agent-meta";
-                meta.textContent = "Agent";
+    let currentDrafts = [];
+    let currentDraftIndex = 0;
 
-                const body = document.createElement("div");
-                body.className = "agent-text";
-                body.textContent = text;
+    function addMsg(who, text, options = null) {
+        if (who === "You") {
+            const d = document.createElement("div");
+            d.className = "bubble you";
+            d.textContent = text;
+            threadEl.appendChild(d);
+        } else {
+            const wrap = document.createElement("div");
+            wrap.className = "agent-block";
+            const meta = document.createElement("div");
+            meta.className = "agent-meta";
+            meta.textContent = "FiAi";
+            const body = document.createElement("div");
+            body.className = "agent-text";
+            body.textContent = text;
 
-                // --- NEW LOGIC: Render interactive buttons ---
-                if (options && options.length > 0) {
-                    const optsDiv = document.createElement("div");
-                    optsDiv.style.display = "flex";
-                    optsDiv.style.gap = "8px";
-                    optsDiv.style.marginTop = "10px";
-                    optsDiv.style.flexWrap = "wrap";
-
-                    options.forEach(opt => {
-                        const btn = document.createElement("button");
-                        btn.className = "btn"; // Uses your custom CSS class
-                        btn.style.padding = "6px 12px";
-                        btn.textContent = opt.label;
-
-                        // When clicked, auto-fill the chat and send!
-                        btn.onclick = () => {
-                            msgEl.value = opt.value;
-                            handleSend();
-                        };
-                        optsDiv.appendChild(btn);
-                    });
-                    body.appendChild(optsDiv);
-                }
-
-                wrap.appendChild(meta);
-                wrap.appendChild(body);
-                threadEl.appendChild(wrap);
-            }
-            threadEl.scrollTop = threadEl.scrollHeight;
-        }
-
-        // Keep rendering the JSON on the canvas for debugging
-        function renderResult(data) {
-            statusEl.textContent = "Done";
-
-            // Check if we have an invoice draft to render
-            if (data.artifacts && data.artifacts.invoice_drafts && data.artifacts.invoice_drafts.length > 0) {
-                const draft = data.artifacts.invoice_drafts[0];
-
-                let html = `
-                    <div class="canvas-inner-header">
-                        <h3 class="canvas-inner-title">Draft AR Invoice</h3>
-                        <div class="canvas-subtitle">Intent: <strong>${data.intent}</strong></div>
-                    </div>
-                    <div class="canvas-inner-body" style="background: #fff; padding: 24px;">
-                        
-                        <div style="display: flex; justify-content: space-between; margin-bottom: 24px;">
-                            <div>
-                                <div style="color: var(--muted); font-size: 13px;">Bill To:</div>
-                                <div style="font-weight: 700; font-size: 18px;">${draft.client_name}</div>
-                                <div style="font-size: 14px; color: var(--muted);">${draft.billing_email}</div>
-                            </div>
-                            <div style="text-align: right;">
-                                <div style="color: var(--muted); font-size: 13px;">Status</div>
-                                <div style="font-weight: 700; font-size: 14px; color: #ca8a04;">Pending Approval</div>
-                            </div>
-                        </div>
-
-                        <table class="table" style="margin-bottom: 24px;">
-                            <thead>
-                                <tr>
-                                    <th>Description</th>
-                                    <th>Hours</th>
-                                    <th>Rate</th>
-                                    <th style="text-align: right;">Total</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                `;
-
-                draft.line_items.forEach(item => {
-                    html += `
-                        <tr>
-                            <td>${item.description}</td>
-                            <td>${item.hours}</td>
-                            <td>$${item.rate.toFixed(2)}</td>
-                            <td style="text-align: right; font-weight: 600;">$${item.total.toFixed(2)}</td>
-                        </tr>
-                    `;
+            if (options && options.length > 0) {
+                const optsDiv = document.createElement("div");
+                optsDiv.style.display = "flex";
+                optsDiv.style.gap = "8px";
+                optsDiv.style.marginTop = "10px";
+                optsDiv.style.flexWrap = "wrap";
+                options.forEach(opt => {
+                    const btn = document.createElement("button");
+                    btn.className = "btn";
+                    btn.style.padding = "6px 12px";
+                    btn.textContent = opt.label;
+                    btn.onclick = () => { msgEl.value = opt.value; handleSend(); };
+                    optsDiv.appendChild(btn);
                 });
+                body.appendChild(optsDiv);
+            }
+            wrap.appendChild(meta);
+            wrap.appendChild(body);
+            threadEl.appendChild(wrap);
+        }
+        threadEl.scrollTop = threadEl.scrollHeight;
+    }
 
-                html += `
-                            </tbody>
-                        </table>
-                        
-                        <div class="totals-wrap" style="margin-bottom: 24px;">
-                            <div class="total-chip grand">
-                                <div class="k">Grand Total</div>
-                                <div class="v" style="color: #16a34a; font-size: 20px;">$${draft.grand_total.toFixed(2)}</div>
-                            </div>
-                        </div>
-                    </div>
+    function renderResult(data) {
+        statusEl.textContent = "Done";
 
-                    <div class="canvas-inner-footer">
-                        <div class="footer-left">Please review the draft before syncing.</div>
-                        <div class="footer-right">
-                            <button class="btn" onclick="alert('Draft rejected.')">Reject</button>
-                            <button class="btn primary" style="background: #16a34a; border-color: #16a34a;" onclick="alert('Approved! Syncing to QuickBooks...')">Approve & Sync to QB</button>
-                        </div>
-                    </div>
-                `;
-
-                canvasEl.innerHTML = html;
+        if (data.artifacts && data.artifacts.data_views && data.artifacts.data_views.length > 0) {
+            const view = data.artifacts.data_views[0];
+            let html = `
+                <div class="canvas-inner-header fade-in">
+                    <h3 class="canvas-inner-title">${view.list_name || "Data Report"}</h3>
+                    <div class="canvas-subtitle">Generated by FiAi</div>
+                </div>
+                <div class="canvas-inner-body fade-in" style="background: #fff; padding: 24px;">
+                    <table class="table" style="width: 100%; border-collapse: collapse;">
+                        <thead><tr style="background: #f8fafc; text-align: left;">
+            `;
+            if (view.data && view.data.length > 0) {
+                const keys = Object.keys(view.data[0]);
+                keys.forEach(key => { html += `<th style="padding: 12px; border-bottom: 2px solid #e2e8f0; text-transform: capitalize;">${key.replace(/_/g, ' ')}</th>`; });
+                html += `</tr></thead><tbody>`;
+                view.data.forEach(row => {
+                    html += `<tr>`;
+                    keys.forEach(key => { html += `<td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">${row[key]}</td>`; });
+                    html += `</tr>`;
+                });
             } else {
-                // Fallback to JSON view if it's not a draft
-                canvasEl.innerHTML = `
-                    <div class="canvas-inner-header">
-                        <h3 class="canvas-inner-title">Agent Payload</h3>
-                        <div class="canvas-subtitle">Intent Detected: <strong>${data.intent || 'N/A'}</strong></div>
-                    </div>
-                    <div class="canvas-inner-body">
-                        <pre style="font-size:13px; white-space:pre-wrap; word-break:break-all; background:#f8fafc; padding:12px; border-radius:8px;">${JSON.stringify(data, null, 2)}</pre>
-                    </div>
-                `;
+                html += `</tr></thead><tbody><tr><td colspan="100%">No data found.</td></tr>`;
+            }
+            html += `</tbody></table></div>`;
+            canvasEl.innerHTML = html;
+            return;
+        }
+
+        let drafts = [];
+        if (data.artifacts) {
+            if (data.artifacts.invoice_drafts && data.artifacts.invoice_drafts.length > 0) {
+                drafts = drafts.concat(data.artifacts.invoice_drafts.map(d => ({ ...d, documentType: 'AR Invoice' })));
+            }
+            if (data.artifacts.ap_drafts && data.artifacts.ap_drafts.length > 0) {
+                drafts = drafts.concat(data.artifacts.ap_drafts.map(d => ({ ...d, documentType: 'AP Bill' })));
             }
         }
 
-        async function handleSend() {
-            const text = msgEl.value.trim();
-            if (!text) return;
-
-            // Disable all previous option buttons so they can't be clicked again
-            const allButtons = threadEl.querySelectorAll('button');
-            allButtons.forEach(btn => {
-                btn.disabled = true;
-                btn.style.opacity = '0.5';
-                btn.style.cursor = 'not-allowed';
+        if (drafts.length > 0) {
+            currentDrafts = drafts;
+            currentDrafts.forEach(d => {
+                if (!d.status) d.status = 'Draft';
+                if (d.isSyncing === undefined) d.isSyncing = false;
             });
+            currentDraftIndex = 0;
+            drawInvoiceCarousel();
+        } else {
+            canvasEl.innerHTML = `<div style="padding: 24px; color: #64748b;">No visual artifacts to display.</div>`;
+        }
+    }
 
-            addMsg("You", text);
-            msgEl.value = "";
-            statusEl.textContent = "Agent is thinking…";
+    function drawInvoiceCarousel() {
+        const draft = currentDrafts[currentDraftIndex];
 
-            // Add Bouncing Dots to Chat
-            const loadingId = "load-" + Date.now();
-            const loadingWrap = document.createElement("div");
-            loadingWrap.id = loadingId;
-            loadingWrap.className = "agent-block";
-            loadingWrap.innerHTML = `
-                <div class="agent-meta">FiAi</div>
-                <div class="agent-text" style="width: 60px;">
-                    <div class="typing-indicator"><span></span><span></span><span></span></div>
-                </div>`;
-            threadEl.appendChild(loadingWrap);
-            threadEl.scrollTop = threadEl.scrollHeight;
-
-            // Add Skeleton Loader to Canvas
-            canvasEl.innerHTML = `
-                <div class="canvas-skeleton">
-                    <h3 style="color: #64748b; margin-bottom: 20px;">Fetching Backend Data...</h3>
-                    <div class="skeleton-pulse" style="height: 20px; width: 40%;"></div>
-                    <div class="skeleton-pulse" style="height: 40px; width: 100%;"></div>
-                    <div class="skeleton-pulse" style="height: 40px; width: 100%;"></div>
-                    <div class="skeleton-pulse" style="height: 40px; width: 100%;"></div>
-                    <div class="skeleton-pulse" style="height: 20px; width: 30%; margin-top: 24px;"></div>
+        let navHtml = '';
+        if (currentDrafts.length > 1) {
+            navHtml = `
+                <div style="display: flex; justify-content: space-between; align-items: center; background: #f8fafc; padding: 10px 16px; border-bottom: 1px solid #e2e8f0;">
+                    <button class="btn" style="background: white; border: 1px solid #cbd5e1; padding: 4px 12px;" onclick="changeDraft(-1)" ${currentDraftIndex === 0 ? 'disabled' : ''}>&larr; Previous</button>
+                    <span style="font-weight: 600; color: #475569; font-size: 13px;">Document ${currentDraftIndex + 1} of ${currentDrafts.length}</span>
+                    <button class="btn" style="background: white; border: 1px solid #cbd5e1; padding: 4px 12px;" onclick="changeDraft(1)" ${currentDraftIndex === currentDrafts.length - 1 ? 'disabled' : ''}>Next &rarr;</button>
                 </div>
             `;
-
-            try {
-                const res = await fetch("/api/orchestrate", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ message: text }),
-                });
-                const data = await res.json();
-
-                // Remove loading animations
-                document.getElementById(loadingId).remove();
-
-                let options = null;
-                if (data.next_question && data.next_question.options) {
-                    options = data.next_question.options;
-                }
-
-                addMsg("Agent", data.narration || "Done.", options);
-                renderResult(data);
-
-            } catch (err) {
-                document.getElementById(loadingId).remove();
-                addMsg("Agent", "Error: " + err.message);
-                statusEl.textContent = "Error";
-                canvasEl.innerHTML = `<div style="padding: 20px; color: red;">Failed to connect to backend.</div>`;
-            }
         }
 
-        sendBtn.addEventListener("click", handleSend);
-        msgEl.addEventListener("keydown", (e) => { if (e.key === "Enter") handleSend(); });
+        const isAP = draft.documentType === 'AP Bill';
+        const headerTitle = isAP ? 'VENDOR BILL' : 'INVOICE';
+        const targetEntity = draft.vendor_name || draft.client_name;
+        const targetLabel = isAP ? 'Pay To' : 'Bill To';
+        const mockPrefix = isAP ? 'BILL-' : 'INV-';
 
-        window.addEventListener("load", () => {
-            const pending = sessionStorage.getItem("pendingPrompt");
-            if (pending) {
-                sessionStorage.removeItem("pendingPrompt");
-                msgEl.value = pending;
-                handleSend();
+        if (draft.isSyncing) {
+            canvasEl.innerHTML = `
+                ${navHtml}
+                <div class="canvas-inner-body fade-in" style="background: #fff; padding: 40px; font-family: 'Inter', sans-serif;">
+                    <div style="text-align: center; margin-bottom: 40px;">
+                        <h2 style="color: #1e293b; margin-bottom: 8px;">Processing ${headerTitle}</h2>
+                        <div style="color: #64748b;">${targetEntity} &bull; <strong style="color: #0f172a;">$${draft.grand_total.toFixed(2)}</strong></div>
+                    </div>
+                    <div id="sync-steps-container" style="max-width: 400px; margin: 0 auto;"></div>
+                </div>
+            `;
+            return;
+        }
+
+        const today = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+        const mockDocNo = `${mockPrefix}${Math.floor(10000 + Math.random() * 90000)}`;
+        const badgeClass = draft.status === 'Approved' ? 'badge-approved' : 'badge-draft';
+
+        let html = `
+            ${navHtml}
+            <div class="canvas-inner-body fade-in" style="background: #fff; padding: 40px; font-family: 'Inter', sans-serif;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 40px; border-bottom: 2px solid #2563eb; padding-bottom: 20px;">
+                    <div>
+                        <div style="font-size: 24px; font-weight: 800; color: #1e293b;">YOUR STAFFING CO.</div>
+                        <div style="font-size: 13px; color: #64748b; margin-top: 4px;">123 Business Road<br>Rochester, NY 14623</div>
+                    </div>
+                    <div style="text-align: right;">
+                        <div style="font-size: 32px; font-weight: 300; color: #2563eb; letter-spacing: 2px; display: inline-block;">${headerTitle}</div>
+                        <span class="status-badge ${badgeClass}">${draft.status}</span>
+                        <table style="margin-top: 10px; margin-left: auto; text-align: right; font-size: 13px;">
+                            <tr><td style="color: #64748b; padding-right: 16px;">Number:</td><td style="font-weight: 600;">${mockDocNo}</td></tr>
+                            <tr><td style="color: #64748b; padding-right: 16px;">Date:</td><td style="font-weight: 600;">${today}</td></tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 30px;">
+                    <div style="font-size: 12px; font-weight: 700; color: #94a3b8; text-transform: uppercase;">${targetLabel}</div>
+                    <div style="font-size: 16px; font-weight: 600; color: #1e293b; margin-top: 4px;">${targetEntity}</div>
+                    ${isAP ? `<div style="font-size: 13px; color: #64748b; margin-top: 2px;">Type: ${draft.vendor_type || 'Contractor'}</div>` : ''}
+                </div>
+
+                <table style="width: 100%; border-collapse: collapse; margin-bottom: 30px; font-size: 13px;">
+                    <thead>
+                        <tr style="background: #f1f5f9; color: #334155; text-align: left;">
+                            <th style="padding: 10px; border: 1px solid #cbd5e1;">DESCRIPTION</th>
+                            <th style="padding: 10px; border: 1px solid #cbd5e1; text-align: center;">QTY</th>
+                            <th style="padding: 10px; border: 1px solid #cbd5e1; text-align: right;">RATE</th>
+                            <th style="padding: 10px; border: 1px solid #cbd5e1; text-align: right;">AMOUNT</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+        `;
+
+        if (draft.line_items) {
+            draft.line_items.forEach((item, index) => {
+                html += `
+                    <tr style="background: ${index % 2 === 0 ? '#ffffff' : '#f8fafc'};">
+                        <td style="padding: 12px; border: 1px solid #e2e8f0; color: #334155;">${item.description}</td>
+                        <td style="padding: 12px; border: 1px solid #e2e8f0; text-align: center;">${item.hours}</td>
+                        <td style="padding: 12px; border: 1px solid #e2e8f0; text-align: right;">$${item.rate.toFixed(2)}</td>
+                        <td style="padding: 12px; border: 1px solid #e2e8f0; text-align: right; font-weight: 600;">$${item.total.toFixed(2)}</td>
+                    </tr>
+                `;
+            });
+        }
+
+        html += `
+                    </tbody>
+                </table>
+                <div style="display: flex; justify-content: flex-end;">
+                    <table style="width: 250px; text-align: right; font-size: 14px;">
+                        <tr><td style="padding: 8px 0; color: #64748b;">Subtotal</td><td style="padding: 8px 0; font-weight: 600;">$${draft.grand_total.toFixed(2)}</td></tr>
+                        <tr><td style="padding: 16px 0; font-weight: 700; font-size: 16px; border-top: 2px solid #e2e8f0;">Balance Due</td><td style="padding: 16px 0; font-weight: 800; font-size: 18px; color: #2563eb; border-top: 2px solid #e2e8f0;">$${draft.grand_total.toFixed(2)}</td></tr>
+                    </table>
+                </div>
+            </div>
+        `;
+
+        if (draft.status === 'Approved') {
+            html += `
+                <div class="canvas-inner-footer" style="background: #f0fdf4; border-top: 1px solid #bbf7d0; display: flex; justify-content: center; padding: 16px;">
+                    <span style="color: #16a34a; font-weight: 600;">&#10003; Document has been synced successfully.</span>
+                </div>
+            `;
+        } else {
+            html += `
+                <div class="canvas-inner-footer" style="background: #f8fafc; border-top: 1px solid #e2e8f0;">
+                    <div class="footer-left" style="color: #64748b; font-size: 13px;">Action is irreversible.</div>
+                    <div class="footer-right">
+                        <button class="btn" style="border: 1px solid #ef4444; color: #ef4444; padding: 8px 16px;" onclick="alert('Draft rejected.')">Reject</button>
+                        <button class="btn primary" style="background: #2563eb; color: white; border: none; padding: 8px 16px;" onclick="startSyncSimulation(${currentDraftIndex})">Approve &amp; Sync to QB</button>
+                    </div>
+                </div>
+            `;
+        }
+        canvasEl.innerHTML = html;
+    }
+
+    function changeDraft(direction) {
+        currentDraftIndex += direction;
+        drawInvoiceCarousel();
+    }
+
+    async function startSyncSimulation(draftIndex) {
+        const draft = currentDrafts[draftIndex];
+        draft.isSyncing = true;
+        drawInvoiceCarousel();
+
+        const steps = [
+            "Generating PDF...",
+            "Attaching Timesheets & Expenses...",
+            "Sending Email to Client...",
+            "Syncing Ledger to QuickBooks..."
+        ];
+        const container = document.getElementById('sync-steps-container');
+        if (container) {
+            container.innerHTML = steps.map((step, i) => `
+                <div id="step-row-${draftIndex}-${i}" class="step-row step-pending">
+                    <div class="step-icon" id="step-icon-${draftIndex}-${i}">&#8987;</div>
+                    <div>${step}</div>
+                </div>
+            `).join('');
+        }
+
+        for (let i = 0; i < steps.length; i++) {
+            updateStepUI(draftIndex, i, 'active', '');
+            await new Promise(r => setTimeout(r, 1500 + Math.random() * 1000));
+            updateStepUI(draftIndex, i, 'done', '&#10003;');
+        }
+
+        draft.isSyncing = false;
+        draft.status = 'Approved';
+        if (currentDraftIndex === draftIndex) { drawInvoiceCarousel(); }
+    }
+
+    function updateStepUI(draftIndex, stepIndex, stateClass, iconHtml) {
+        if (currentDraftIndex === draftIndex) {
+            const row = document.getElementById(`step-row-${draftIndex}-${stepIndex}`);
+            const icon = document.getElementById(`step-icon-${draftIndex}-${stepIndex}`);
+            if (row && icon) {
+                row.className = `step-row step-${stateClass} fade-in`;
+                if (iconHtml !== null) icon.innerHTML = iconHtml;
             }
+        }
+    }
+
+    async function handleSend() {
+        const text = msgEl.value.trim();
+        if (!text) return;
+
+        const allButtons = threadEl.querySelectorAll('button');
+        allButtons.forEach(btn => {
+            btn.disabled = true;
+            btn.style.opacity = '0.5';
+            btn.style.cursor = 'not-allowed';
         });
-    </script>
 
-</body>
+        addMsg("You", text);
+        msgEl.value = "";
+        statusEl.textContent = "Agent is thinking\u2026";
 
+        const loadingId = "load-" + Date.now();
+        const thoughtId = "thought-" + Date.now();
+        const loadingWrap = document.createElement("div");
+        loadingWrap.id = loadingId;
+        loadingWrap.className = "agent-block";
+        loadingWrap.innerHTML = `
+            <div class="agent-meta">FiAi</div>
+            <div class="agent-text" style="min-width: 200px;">
+                <div class="typing-indicator" style="display:inline-flex; padding:0;"><span></span><span></span><span></span></div>
+                <div id="${thoughtId}" style="font-size: 12px; color: #64748b; margin-top: 8px; font-style: italic; transition: all 0.2s;">Starting up...</div>
+            </div>`;
+        threadEl.appendChild(loadingWrap);
+        threadEl.scrollTop = threadEl.scrollHeight;
+
+        canvasEl.innerHTML = `
+            <div class="canvas-skeleton fade-in" style="padding: 40px; background: #fff; height: 100%;">
+                <h3 style="color: #64748b; margin-bottom: 30px;">Analyzing Financial Data...</h3>
+                <div class="skeleton-pulse" style="height: 20px; width: 40%; background: #e2e8f0; margin-bottom: 20px;"></div>
+                <div class="skeleton-pulse" style="height: 60px; width: 100%; background: #e2e8f0; margin-bottom: 15px;"></div>
+                <div class="skeleton-pulse" style="height: 60px; width: 100%; background: #e2e8f0; margin-bottom: 15px;"></div>
+            </div>
+        `;
+
+        try {
+            const res = await fetch("/api/orchestrate", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ message: text }),
+            });
+
+            const reader = res.body.getReader();
+            const decoder = new TextDecoder("utf-8");
+            let buffer = "";
+
+            while (true) {
+                const { done, value } = await reader.read();
+                if (done) break;
+
+                buffer += decoder.decode(value, { stream: true });
+                let boundary = buffer.indexOf('\n');
+
+                while (boundary !== -1) {
+                    const chunk = buffer.slice(0, boundary).trim();
+                    buffer = buffer.slice(boundary + 1);
+                    boundary = buffer.indexOf('\n');
+
+                    if (chunk) {
+                        try {
+                            const parsed = JSON.parse(chunk);
+                            if (parsed.type === "thought") {
+                                const el = document.getElementById(thoughtId);
+                                if (el) el.innerText = parsed.content;
+                            } else if (parsed.type === "result") {
+                                document.getElementById(loadingId).remove();
+                                const options = parsed.content.next_question?.options || null;
+                                addMsg("FiAi", parsed.content.narration || "Done.", options);
+                                renderResult(parsed.content);
+                            } else if (parsed.type === "error") {
+                                throw new Error(parsed.content);
+                            }
+                        } catch (e) { console.error("Stream parse error:", chunk, e); }
+                    }
+                }
+            }
+        } catch (err) {
+            const loader = document.getElementById(loadingId);
+            if (loader) loader.remove();
+            addMsg("FiAi", "Error: " + err.message);
+            statusEl.textContent = "Error";
+            canvasEl.innerHTML = `<div style="padding: 24px; color: #ef4444;">Failed to connect to backend.</div>`;
+        }
+    }
+
+    sendBtn.addEventListener("click", handleSend);
+    msgEl.addEventListener("keydown", (e) => { if (e.key === "Enter") handleSend(); });
+
+    window.addEventListener("load", () => {
+        const pending = sessionStorage.getItem("pendingPrompt");
+        if (pending) {
+            sessionStorage.removeItem("pendingPrompt");
+            msgEl.value = pending;
+            handleSend();
+        }
+    });
+</script>
 </html>

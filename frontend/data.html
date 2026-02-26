@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Database Viewer</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            height: 100vh;
+            font-family: 'Inter', sans-serif;
+            background: #f8fafc;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            width: 260px;
+            background: #0f172a;
+            color: white;
+            padding: 24px 16px;
+            overflow-y: auto;
+            flex-shrink: 0;
+        }
+
+        .sidebar h2 {
+            font-size: 14px;
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+            padding-left: 10px;
+        }
+
+        .table-link {
+            display: block;
+            padding: 10px 12px;
+            color: #cbd5e1;
+            text-decoration: none;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-bottom: 4px;
+            text-transform: capitalize;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+
+        .table-link:hover {
+            background: #1e293b;
+            color: white;
+        }
+
+        .table-link.active {
+            background: #2563eb;
+            color: white;
+            font-weight: 600;
+        }
+
+        /* Main Content Styles */
+        .content {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content h1 {
+            margin-top: 0;
+            color: #1e293b;
+            text-transform: capitalize;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        /* Table Styles */
+        .table-container {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e2e8f0;
+            overflow-x: auto;
+            flex: 1;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            white-space: nowrap;
+        }
+
+        th,
+        td {
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+            font-size: 13px;
+        }
+
+        th {
+            background: #f8fafc;
+            font-weight: 600;
+            color: #475569;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            text-transform: capitalize;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        tr:hover {
+            background: #f1f5f9;
+        }
+
+        td {
+            color: #334155;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="sidebar">
+        <h2>JSON Data Tables</h2>
+        <div id="table-list">Loading...</div>
+    </div>
+    <div class="content">
+        <h1 id="table-title">Select a Table</h1>
+        <div class="table-container">
+            <table id="data-table">
+                <thead>
+                    <tr id="table-head"></tr>
+                </thead>
+                <tbody id="table-body"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        let dbData = {};
+
+        async function loadData() {
+            try {
+                const res = await fetch('/api/db-viewer');
+                dbData = await res.json();
+                renderSidebar();
+            } catch (e) {
+                document.getElementById('table-list').innerText = 'Error loading database files.';
+            }
+        }
+
+        function renderSidebar() {
+            const list = document.getElementById('table-list');
+            list.innerHTML = '';
+            const tables = Object.keys(dbData).sort();
+            tables.forEach((table, index) => {
+                const a = document.createElement('div');
+                a.className = 'table-link';
+                a.innerText = table.replace(/_/g, ' ');
+                a.onclick = () => {
+                    document.querySelectorAll('.table-link').forEach(el => el.classList.remove('active'));
+                    a.classList.add('active');
+                    renderTable(table);
+                };
+                list.appendChild(a);
+                if (index === 0) a.click();
+            });
+        }
+
+        function renderTable(tableName) {
+            document.getElementById('table-title').innerText = tableName.replace(/_/g, ' ') + '.json';
+            const data = dbData[tableName];
+            const thead = document.getElementById('table-head');
+            const tbody = document.getElementById('table-body');
+            thead.innerHTML = '';
+            tbody.innerHTML = '';
+
+            if (!data || data.length === 0) {
+                thead.innerHTML = '<th>Status</th>';
+                tbody.innerHTML = '<tr><td>No data available in this file.</td></tr>';
+                return;
+            }
+
+            const keys = Object.keys(data[0]);
+            keys.forEach(key => {
+                const th = document.createElement('th');
+                th.innerText = key.replace(/_/g, ' ');
+                thead.appendChild(th);
+            });
+
+            data.forEach(row => {
+                const tr = document.createElement('tr');
+                keys.forEach(key => {
+                    const td = document.createElement('td');
+                    let cellValue = row[key];
+                    if (cellValue === null) cellValue = '<span style="color:#94a3b8; font-style:italic;">null</span>';
+                    else if (typeof cellValue === 'object') cellValue = JSON.stringify(cellValue);
+                    td.innerHTML = cellValue;
+                    tr.appendChild(td);
+                });
+                tbody.appendChild(tr);
+            });
+        }
+
+        loadData();
+    </script>
+</body>
+
+</html>
