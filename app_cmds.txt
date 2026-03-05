@@ -1,0 +1,38 @@
+
+-------------------------------------------------
+# Change Directory:
+-------------------------------------------------
+
+cd /Volumes/projects/sreem/bo_agent/FiAi
+cd /Volumes/projects/sreem/bo_agent/i9_agent
+
+
+-------------------------------------------------
+# Activate Virtual Environment:
+-------------------------------------------------
+
+source .venv/bin/activate
+
+-------------------------------------------------
+# Run the app:
+-------------------------------------------------
+
+uvicorn backend.main:app --reload --port 8001
+
+-------------------------------------------------
+# URL to access the app:
+-------------------------------------------------
+
+http://localhost:8001/i9
+
+-------------------------------------------------
+# GitHub Commands: to commit and push changes
+-------------------------------------------------
+
+git add .
+git commit -m "describe what changed"
+git push
+
+----------------------------------------
+
+

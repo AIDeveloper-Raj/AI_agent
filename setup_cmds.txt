@@ -1,0 +1,79 @@
+✅ STEP 1 — Go to Your Base Directory
+cd /Volumes/projects/sreem/bo_agent
+
+✅ STEP 2 — Create Project Folder
+mkdir -p i9_agent
+cd i9_agent
+
+✅ STEP 3 — Create Full Folder Structure
+mkdir -p backend frontend/employee frontend/bo data/vector_db output/stamped_i9s
+
+✅ STEP 4 — Create Required Files
+touch backend/main.py
+touch backend/db.py
+touch backend/tools.py
+touch backend/prompts.py
+
+touch frontend/employee/index.html
+touch frontend/employee/script.js
+
+touch frontend/bo/index.html
+touch frontend/bo/script.js
+
+touch data/i9_rules.txt
+touch data/dummy_employees.json
+
+✅ STEP 5 — Install uv (If Not Installed)
+
+Check:
+uv --version
+
+If not installed:
+curl -Ls https://astral.sh/uv/install.sh | sh
+
+Restart terminal if needed.
+
+✅ STEP 6 — Create Virtual Environment (Inside i9_agent)
+
+We want .venv inside /i9_agent
+cd i9_agent
+uv venv
+
+This creates:
+i9_agent/.venv
+
+✅ STEP 7 — Activate Virtual Environment
+
+Mac:
+source .venv/bin/activate
+
+You should now see:
+(.venv) %
+
+✅ STEP 8 — Install FastAPI + Server
+uv init
+uv add fastapi
+uv add uvicorn
+
+✅ STEP 9 — Install OpenAI (ChatGPT API SDK)
+uv add openai
+
+✅ STEP 10 — Install pypdf
+uv add pypdf
+
+✅ STEP 11 — (Recommended) Add These Too
+
+For your project architecture (I-9 agent), you will likely need:
+uv add python-multipart
+uv add chromadb
+uv add python-dotenv
+
+Optional but useful:
+uv add httpx
+uv add jinja2
+
+✅ STEP 12 — Freeze Dependencies (Optional)
+uv pip freeze > requirements.txt
+(Though uv already manages dependencies via pyproject.toml)
+
+uv add fastapi uvicorn openai pypdf chromadb python-dotenv python-multipart httpx jinja2

@@ -40,7 +40,7 @@ def handle_message(message: str):
                 messages=messages,
                 tools=FINANCE_TOOLS,
                 tool_choice="auto",
-                temperature=0.1
+                temperature=0.9
             )
             
             response_message = response.choices[0].message
