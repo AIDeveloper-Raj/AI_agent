@@ -1,0 +1,26 @@
+[
+    {
+        "employee_name": "Purna Rao",
+        "employee_unique_id": 20789,
+        "employee_code": "015",
+        "employee_type": 2
+    },
+    {
+        "employee_name": "Jaya Latha",
+        "employee_unique_id": 20983,
+        "employee_code": "221",
+        "employee_type": 2
+    },
+    {
+        "employee_name": "Aathi Raj",
+        "employee_unique_id": 21402,
+        "employee_code": "EMPS-91062",
+        "employee_type": 2
+    },
+    {
+        "employee_name": "Dasu Deva",
+        "employee_unique_id": 22239,
+        "employee_code": "EMP-91198",
+        "employee_type": 2
+    }
+]

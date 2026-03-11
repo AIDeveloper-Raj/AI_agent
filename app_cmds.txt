@@ -11,18 +11,20 @@ cd /Volumes/projects/sreem/bo_agent/i9_agent
 # Activate Virtual Environment:
 -------------------------------------------------
 
-source .venv/bin/activate
+    source .venv/bin/activate
 
 -------------------------------------------------
 # Run the app:
 -------------------------------------------------
 
+uvicorn backend.main:app --reload --port 8000
 uvicorn backend.main:app --reload --port 8001
 
 -------------------------------------------------
 # URL to access the app:
 -------------------------------------------------
 
+http://localhost:8000/finance
 http://localhost:8001/i9
 
 -------------------------------------------------
@@ -33,6 +35,11 @@ git add .
 git commit -m "describe what changed"
 git push
 
+# to push to a specific branch
+
+git add .
+git commit -m "feat: v1.0 implement universal AR billing with client and worker resolution, including timesheet validation and interactive ambiguity handling."
+git push origin poc_services
 ----------------------------------------
 
 

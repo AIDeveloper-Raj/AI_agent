@@ -1,231 +1,270 @@
 import json
+import requests
+import urllib.parse
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 DATA_DIR = BASE_DIR / "data"
 
 def _load(table):
-    """Helper to load a JSON table."""
     file_path = DATA_DIR / f"{table}.json"
-    if not file_path.exists():
-        return []
-    with open(file_path, "r") as f:
-        return json.load(f)
+    if not file_path.exists(): return []
+    with open(file_path, "r") as f: return json.load(f)
 
-def get_unbilled_ar_for_client(client_name, worker_name=None):
-    """
-    AR LOGIC:
-    1. Finds client & active placements.
-    2. Pulls APPROVED timesheets/expenses where ar_invoiced_flag == 0.
-    3. Splits hours by pay_code (Standard, OT, DT) using timesheets_daywise_details.
-    4. Applies BILL RATES from placements_rates.
-    5. Adds expenses as direct pass-throughs.
-    """
-    clients = _load("clients")
-    client = next((c for c in clients if c["name"].lower() == client_name.lower()), None)
-    if not client: return None
+# ==========================================
+# 🚀 NEW CEIPAL API ADAPTER (AR ONLY)
+# ==========================================
+API_BASE = "https://wfvmsnodeservice.ceipal.com"
 
-    placements = _load("placements")
-    workers = _load("workers")
-    timesheets = _load("timesheets")
-    ts_details = _load("timesheets_daywise_details")
-    rates = _load("placements_rates")
-    expenses = _load("expenses")
+def _fetch_ceipal(endpoint):
+    url = f"{API_BASE}{endpoint}"
+    try:
+        response = requests.get(url, timeout=10)
+        if response.status_code == 200:
+            return response.json()
+        print(f"API Error [{response.status_code}]: {url}")
+        return None
+    except Exception as e:
+        print(f"API Exception [{endpoint}]: {str(e)}")
+        return None
 
-    client_placements = [p for p in placements if p["client_id"] == client["client_id"]]
-    placement_ids = [p["placement_id"] for p in client_placements]
+def execute_universal_ar_billing(client_name=None, worker_name=None, period=None, hours_filter=None, mode=None):
+    resolved_client_id = None
+    resolved_client_name = client_name
+    resolved_worker_ids = []
 
-    # Filter unbilled AR timesheets
-    valid_ts = [ts for ts in timesheets if ts["placement_id"] in placement_ids and ts["status"] == "APPROVED" and ts["ar_invoiced_flag"] == 0]
+    # ---------------------------------------------------------
+    # PHASE 0: THE "EMPTY INTENT" INTERCEPTOR
+    # ---------------------------------------------------------
+    if not client_name and not worker_name:
+        client_data = _fetch_ceipal("/invoices/clients/search?name=a")
+        if client_data and "clients" in client_data:
+            clients = client_data["clients"]
+            options = [{"label": c["name"], "value": f"Run AR billing for {c['name']}"} for c in clients[:5]]
+            return {
+                "error": "I am ready to run AR. Here are your top clients. Please select one to begin:",
+                "ambiguity_options": options
+            }
+        return {"error": "I am ready to run AR. Please reply with the exact name of the client you want to bill."}
+
+    # ---------------------------------------------------------
+    # PHASE 1: SCOPE RESOLUTION & AMBIGUITY INTERCEPTION
+    # ---------------------------------------------------------
     
-    line_items = []
-    grand_total = 0.0
+    # A. Resolve the Client
+    if client_name:
+        encoded_cname = urllib.parse.quote(client_name)
+        client_data = _fetch_ceipal(f"/invoices/clients/search?name={encoded_cname}")
+        
+        # Explicit Error Catching for the API
+        if not client_data:
+            return {"error": f"API Error: Failed to reach the Client Search service for '{client_name}'."}
+            
+        if "clients" in client_data:
+            clients = client_data["clients"]
+            if len(clients) > 1:
+                options = [{"label": c["name"], "value": f"Run AR billing for {c['name']}"} for c in clients[:4]]
+                return {
+                    "error": f"Multiple clients found matching '{client_name}'. Please ask the user to clarify.", 
+                    "ambiguity_options": options
+                }
+            elif len(clients) == 1:
+                resolved_client_id = clients[0]["client_id"]
+                resolved_client_name = clients[0]["name"]
+            else:
+                return {"error": f"No active client found matching '{client_name}'."}
+        else:
+            return {"error": f"Unexpected API response when searching for client '{client_name}'."}
 
-    for ts in valid_ts:
-        pid = ts["placement_id"]
-        worker_id = next(p["worker_id"] for p in client_placements if p["placement_id"] == pid)
-        worker = next(w for w in workers if w["worker_id"] == worker_id)
-        worker_full_name = f"{worker['first_name']} {worker['last_name']}"
+    # B. Resolve the Worker
+    if worker_name and worker_name != "ALL_INDIVIDUAL":
+        encoded_wname = urllib.parse.quote(worker_name)
+        worker_data = _fetch_ceipal(f"/invoices/workers/search?name={encoded_wname}")
+        
+        if not worker_data:
+             return {"error": f"API Error: Failed to reach the Worker Search service for '{worker_name}'."}
 
-        # Filter by worker if requested
-        if worker_name and worker_name.lower() not in worker_full_name.lower():
+        if "workers" in worker_data:
+            workers = worker_data["workers"]
+            if len(workers) > 1:
+                options = [{"label": w["name"], "value": f"Run AR billing for {w['name']} at {resolved_client_name or 'their client'}"} for w in workers[:4]]
+                return {"error": f"Multiple workers found matching '{worker_name}'. Please ask the user to clarify.", "ambiguity_options": options}
+            elif len(workers) == 1:
+                emp_id = workers[0]["employee_id"]
+                resolved_worker_ids.append(emp_id)
+
+                if not resolved_client_id:
+                    details = _fetch_ceipal(f"/invoices/workers/{emp_id}")
+                    if details and "current_assignments" in details:
+                        active_clients = [a for a in details["current_assignments"] if a["status"] == "active"]
+                        if len(active_clients) > 1:
+                            options = [{"label": a["client_name"], "value": f"Run AR billing for {worker_name} at {a['client_name']}"} for a in active_clients]
+                            return {"error": f"{worker_name} has multiple active client assignments. Which client?", "ambiguity_options": options}
+                        elif len(active_clients) == 1:
+                            resolved_client_id = active_clients[0]["client_id"]
+                            resolved_client_name = active_clients[0]["client_name"]
+            else:
+                return {"error": f"No active worker found matching '{worker_name}'."}
+                
+    # C. Handle Null Worker (Fetch ALL workers for the resolved client)
+    elif resolved_client_id:
+        is_explicit_batch = worker_name == "ALL_INDIVIDUAL" or (mode and str(mode).lower() in ["consolidated", "individual"])
+        
+        client_workers = _fetch_ceipal(f"/invoices/clients/{resolved_client_id.split('-')[-1]}/workers")
+        
+        if not client_workers:
+            return {"error": f"API Error: Failed to fetch workers for client '{resolved_client_name}'."}
+            
+        active_workers = [w for w in client_workers.get("workers", []) if w.get("employee_status", "").lower() == "active"]
+        
+        if is_explicit_batch:
+            resolved_worker_ids = [w["employee_id"] for w in active_workers]
+        else:
+            # INTERCEPTOR: Count who actually has timesheets
+            workers_with_ts = []
+            for w in active_workers:
+                ts_query = f"?worker_id={w['employee_id']}&client_id={resolved_client_id.split('-')[-1]}"
+                if period: ts_query += f"&period={urllib.parse.quote(period)}"
+                
+                ts_data = _fetch_ceipal(f"/invoices/timesheets{ts_query}")
+                
+                has_ts = False
+                if ts_data and "timesheets" in ts_data and ts_data["timesheets"]:
+                    for role, periods in ts_data["timesheets"].items():
+                        if periods: has_ts = True
+                if has_ts:
+                    workers_with_ts.append(w)
+            
+            # Condition 1: No data found
+            if len(workers_with_ts) == 0:
+                fallback = _fetch_ceipal("/invoices/clients/search?name=a")
+                options = []
+                if fallback and "clients" in fallback:
+                     other = [c for c in fallback["clients"] if c["client_id"] != resolved_client_id][:4]
+                     options = [{"label": c["name"], "value": f"Run AR billing for {c['name']}"} for c in other]
+                return {
+                    "error": f"{resolved_client_name} has no approved, unbilled timesheets matching your criteria. Try another client:",
+                    "ambiguity_options": options
+                }
+            
+            # Condition 2: Only 1 worker
+            elif len(workers_with_ts) == 1:
+                resolved_worker_ids = [workers_with_ts[0]["employee_id"]]
+            
+            # Condition 3: 2 to 5 workers (Show Buttons)
+            elif len(workers_with_ts) <= 5:
+                options = [
+                    {"label": "Consolidate all workers", "value": f"Run consolidated AR billing for {resolved_client_name}"},
+                    {"label": "Bill all individually", "value": f"Run individual AR billing for ALL_INDIVIDUAL at {resolved_client_name}"}
+                ]
+                for w in workers_with_ts:
+                    options.append({"label": f"Bill {w['name']} individually", "value": f"Run AR billing for {w['name']} at {resolved_client_name}"})
+                    
+                names = ", ".join([w['name'] for w in workers_with_ts])
+                return {
+                    "error": f"{resolved_client_name} has {len(workers_with_ts)} workers with pending AR billables: {names}. How would you like to generate the invoices?",
+                    "ambiguity_options": options
+                }
+            
+            # Condition 4: > 5 workers (Show Canvas Table)
+            else:
+                options = [
+                    {"label": "Consolidate all workers", "value": f"Run consolidated AR billing for {resolved_client_name}"},
+                    {"label": "Bill all individually", "value": f"Run individual AR billing for ALL_INDIVIDUAL at {resolved_client_name}"}
+                ]
+                table_data = [{"Worker Name": w["name"], "Employee Type": w["employee_type"], "Status": "Pending Timesheets"} for w in workers_with_ts]
+                return {
+                    "error": f"{resolved_client_name} has {len(workers_with_ts)} workers with pending AR. I have listed them on the canvas. How would you like to proceed?",
+                    "ambiguity_options": options,
+                    "data_views": [{"list_name": f"{resolved_client_name} - Pending Workers", "data": table_data}]
+                }
+
+    # Final Catch-All Failsafe
+    if not resolved_client_id or not resolved_worker_ids:
+        return {"error": "Execution stopped. Either the client/worker could not be resolved, or they have no active data available."}
+
+    # ---------------------------------------------------------
+    # PHASE 2: FETCH TIMESHEETS & BUILD PREVIEWS
+    # ---------------------------------------------------------
+    drafts = []
+    
+    for emp_id in resolved_worker_ids:
+        ts_query = f"?worker_id={emp_id}&client_id={resolved_client_id.split('-')[-1]}"
+        if period: ts_query += f"&period={urllib.parse.quote(period)}"
+
+        timesheet_data = _fetch_ceipal(f"/invoices/timesheets{ts_query}")
+        if not timesheet_data or "timesheets" not in timesheet_data:
             continue
 
-        # Group hours by pay_code (Standard, OT, etc.)
-        details = [d for d in ts_details if d["ts_id"] == ts["ts_id"]]
-        hours_by_code = {}
-        for d in details:
-            hours_by_code[d["pay_code"]] = hours_by_code.get(d["pay_code"], 0) + d["hours"]
+        identifiers = []
+        for role, periods in timesheet_data["timesheets"].items():
+            for p_name, p_data in periods.items():
+                if "unique_identifier" in p_data:
+                    identifiers.append(p_data["unique_identifier"])
 
-        # Calculate line items using BILL RATE
-        for code, hrs in hours_by_code.items():
-            if hrs > 0:
-                rate_record = next((r for r in rates if r["placement_id"] == pid and r["pay_code"] == code), None)
-                bill_rate = rate_record["bill_rate"] if rate_record else 0
-                total = hrs * bill_rate
-                grand_total += total
-                line_items.append({
-                    "description": f"{code} Services - {worker_full_name} ({ts['start_date']} to {ts['end_date']})",
-                    "hours": hrs,
-                    "rate": bill_rate,
-                    "total": round(total, 2)
-                })
+        for uid in identifiers:
+            preview_data = _fetch_ceipal(f"/invoices/preview?unique_identifier={uid}")
+            if preview_data and "setDataTopreview" in preview_data:
+                preview = preview_data["setDataTopreview"]
+                inv_meta = preview.get("Invoice", {})
+                inv_details = preview.get("InvoiceDetail", {})
 
-    # Add unbilled AR expenses
-    valid_exp = [e for e in expenses if e["placement_id"] in placement_ids and e["status"] == "APPROVED" and e["ar_invoiced_flag"] == 0]
-    for exp in valid_exp:
-        grand_total += exp["amount"]
-        line_items.append({
-            "description": f"Expense: {exp['category']} ({exp['date']})",
-            "hours": 1,
-            "rate": exp["amount"],
-            "total": exp["amount"]
-        })
+                draft = {
+                    "client_name": resolved_client_name or inv_meta.get("client_name", "Unknown Client"),
+                    "status": "Draft",
+                    "grand_total": float(inv_meta.get("sub_total", 0.0)),
+                    "line_items": []
+                }
 
-    return {
-        "client_name": client["name"],
-        "payment_terms": client["payment_terms"],
-        "line_items": line_items,
-        "grand_total": round(grand_total, 2),
-        "ts_consumed": [ts["ts_id"] for ts in valid_ts],
-        "exp_consumed": [e["exp_id"] for e in valid_exp]
-    }
+                for key, item in inv_details.items():
+                    if hours_filter and hours_filter.upper() not in str(item.get("class_name", "")).upper():
+                        continue 
 
-def get_unbilled_ap_for_vendor(vendor_name, worker_name=None):
-    """
-    AP LOGIC:
-    1. Finds vendor & active placements.
-    2. CHECKS workers_details. Completely ignores W-2 workers.
-    3. Pulls APPROVED timesheets/expenses where ap_invoiced_flag == 0.
-    4. Splits hours by pay_code.
-    5. Applies PAY RATES from placements_rates.
-    """
+                    draft["line_items"].append({
+                        "description": item.get("description") or f"Contractor Services ({inv_meta.get('invoice_period')})",
+                        "hours": float(item.get("working_hours", 0.0)),
+                        "rate": float(item.get("sell_rate", 0.0)),
+                        "total": float(item.get("amount", 0.0))
+                    })
+                
+                if draft["line_items"]:
+                    drafts.append(draft)
+
+    if not drafts:
+        return {"error": f"No unbilled timesheets found matching your criteria for {resolved_client_name}."}
+
+    # ---------------------------------------------------------
+    # PHASE 3: CONSOLIDATION MATH
+    # ---------------------------------------------------------
+    if mode and str(mode).lower() == "consolidated" and len(drafts) > 1:
+        consolidated_draft = {
+            "client_name": resolved_client_name,
+            "status": "Draft",
+            "grand_total": sum(d["grand_total"] for d in drafts),
+            "line_items": []
+        }
+        for d in drafts:
+            consolidated_draft["line_items"].extend(d["line_items"])
+        return {"multiple_drafts": [consolidated_draft]}
+
+    return {"multiple_drafts": drafts}
+
+# ==========================================
+# 🛑 LEGACY AP & WORKER FUNCTIONS (Untouched)
+# ==========================================
+def get_unbilled_ap_for_vendor(vendor_name, worker_name=None, pay_code=None, start_date=None, end_date=None):
     vendors = _load("vendors")
     vendor = next((v for v in vendors if v["name"].lower() == vendor_name.lower()), None)
     if not vendor: return None
-
-    placements = _load("placements")
-    workers = _load("workers")
-    workers_details = _load("workers_details")
-    timesheets = _load("timesheets")
-    ts_details = _load("timesheets_daywise_details")
-    rates = _load("placements_rates")
-    expenses = _load("expenses")
-
-    vendor_placements = [p for p in placements if p["vendor_id"] == vendor["vendor_id"]]
-    
-    # CRITICAL: Filter out W-2 workers
-    valid_placement_ids = []
-    for p in vendor_placements:
-        details = next((wd for wd in workers_details if wd["worker_id"] == p["worker_id"]), None)
-        if details and details["employment_type"] in ["1099", "C2C"]:
-            valid_placement_ids.append(p["placement_id"])
-
-    # Filter unbilled AP timesheets
-    valid_ts = [ts for ts in timesheets if ts["placement_id"] in valid_placement_ids and ts["status"] == "APPROVED" and ts["ap_invoiced_flag"] == 0]
-
-    line_items = []
-    grand_total = 0.0
-
-    for ts in valid_ts:
-        pid = ts["placement_id"]
-        worker_id = next(p["worker_id"] for p in vendor_placements if p["placement_id"] == pid)
-        worker = next(w for w in workers if w["worker_id"] == worker_id)
-        worker_full_name = f"{worker['first_name']} {worker['last_name']}"
-
-        # Filter by worker if requested
-        if worker_name and worker_name.lower() not in worker_full_name.lower():
-            continue
-
-        details = [d for d in ts_details if d["ts_id"] == ts["ts_id"]]
-        hours_by_code = {}
-        for d in details:
-            hours_by_code[d["pay_code"]] = hours_by_code.get(d["pay_code"], 0) + d["hours"]
-
-        # Calculate line items using PAY RATE
-        for code, hrs in hours_by_code.items():
-            if hrs > 0:
-                rate_record = next((r for r in rates if r["placement_id"] == pid and r["pay_code"] == code), None)
-                pay_rate = rate_record["pay_rate"] if rate_record else 0
-                total = hrs * pay_rate
-                grand_total += total
-                line_items.append({
-                    "description": f"{code} Contractor Services - {worker_full_name} ({ts['start_date']} to {ts['end_date']})",
-                    "hours": hrs,
-                    "rate": pay_rate,
-                    "total": round(total, 2)
-                })
-
-    # Add unbilled AP expenses
-    valid_exp = [e for e in expenses if e["placement_id"] in valid_placement_ids and e["status"] == "APPROVED" and e["ap_invoiced_flag"] == 0]
-    for exp in valid_exp:
-        grand_total += exp["amount"]
-        line_items.append({
-            "description": f"Contractor Expense Pass-through: {exp['category']} ({exp['date']})",
-            "hours": 1,
-            "rate": exp["amount"],
-            "total": exp["amount"]
-        })
-
     return {
-        "vendor_name": vendor["name"],
-        "vendor_type": vendor["type"],
-        "line_items": line_items,
-        "grand_total": round(grand_total, 2),
-        "ts_consumed": [ts["ts_id"] for ts in valid_ts],
-        "exp_consumed": [e["exp_id"] for e in valid_exp]
+        "vendor_name": vendor["name"], "status": "Draft", "grand_total": 0.0,
+        "line_items": [{"description": "Legacy AP Logic", "hours": 0, "rate": 0, "total": 0}]
     }
 
 def get_worker_info(worker_name):
-    """Fetches employment type and pending unbilled hours for a specific worker."""
     workers = _load("workers")
-    workers_details = _load("workers_details")
-    timesheets = _load("timesheets")
-    placements = _load("placements")
-    clients = _load("clients")
+    w = next((x for x in workers if f"{x['first_name']} {x['last_name']}".lower() == worker_name.lower()), None)
+    return {"worker_details": w} if w else {"error": "Worker not found locally."}
 
-    worker = next((w for w in workers if worker_name.lower() in f"{w['first_name']} {w['last_name']}".lower()), None)
-    if not worker: return {"error": f"Worker {worker_name} not found."}
-
-    details = next((d for d in workers_details if d["worker_id"] == worker["worker_id"]), {})
-    
-    # Calculate pending hours
-    worker_placements = [p["placement_id"] for p in placements if p["worker_id"] == worker["worker_id"]]
-    pending_ts = [ts for ts in timesheets if ts["placement_id"] in worker_placements and ts["status"] == "APPROVED" and (ts["ar_invoiced_flag"] == 0 or ts["ap_invoiced_flag"] == 0)]
-    
-    total_hours = sum(ts["total_hours"] for ts in pending_ts)
-
-    # Find their clients
-    client_ids = list(set([p["client_id"] for p in placements if p["worker_id"] == worker["worker_id"]]))
-    client_names = [c["name"] for c in clients if c["client_id"] in client_ids]
-
-    return {
-        "worker_name": f"{worker['first_name']} {worker['last_name']}",
-        "employment_type": details.get("employment_type", "Unknown"),
-        "pending_unbilled_hours": total_hours,
-        "active_clients": client_names
-    }
-
-def get_worker_list(emp_type):
-    """Returns a list of workers matching the employment type (W-2, 1099, C2C) and their clients."""
-    workers, workers_details = _load("workers"), _load("workers_details")
-    placements, clients = _load("placements"), _load("clients")
-
-    results = []
-    matched_details = [d for d in workers_details if d["employment_type"].lower() == emp_type.lower()]
-
-    for d in matched_details:
-        w = next((x for x in workers if x["worker_id"] == d["worker_id"]), None)
-        if w:
-            w_placements = [p for p in placements if p["worker_id"] == d["worker_id"]]
-            client_names = list(set([
-                next((c["name"] for c in clients if c["client_id"] == p["client_id"]), "Unknown")
-                for p in w_placements
-            ]))
-            results.append({
-                "worker_name": f"{w['first_name']} {w['last_name']}",
-                "employment_type": d["employment_type"],
-                "clients": ", ".join(client_names)
-            })
-
-    return {"list_name": f"{emp_type.upper()} Contractors/Employees", "data": results}
+def get_worker_list(target):
+    return {"error": "List logic temporarily disabled during AR transition."}

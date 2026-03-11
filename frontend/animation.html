@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Agent — Fluid Thinking Animation</title>
+
+    <style>
+        /* ─── Reset & page ─────────────────────────────────────────────── */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            background: #0f1117;
+            font-family: system-ui, -apple-system, sans-serif;
+            padding: 2rem;
+        }
+
+        /* ─── AI Agent Box ─────────────────────────────────────────────── */
+        .ai-agent-box {
+            position: relative;
+            overflow: hidden;
+            border-radius: 1.5rem;
+            padding: 1.75rem 1.5rem;
+            outline: 1px solid rgba(187, 226, 255, 0.35);
+            outline-offset: -1px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: #004a77;
+            width: 100%;
+            max-width: 480px;
+            min-height: 96px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        /* ─── Fluid background ──────────────────────────────────────────── */
+        .fluid-bg {
+            position: absolute;
+            inset: -50%;
+            background: linear-gradient(135deg,
+                    #e9eef6,
+                    #bbe2ff,
+                    #d0d9ff,
+                    #e9eef6);
+            background-size: 300% 300%;
+            animation: gradientFlow 20s ease infinite;
+            filter: url(#lava) blur(40px);
+            opacity: 0.9;
+            transition: opacity 0.6s ease;
+        }
+
+        /* Floating lava blobs */
+        .fluid-bg::before,
+        .fluid-bg::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 30% 40%, #bbe2ff, transparent 60%),
+                radial-gradient(circle at 70% 60%, #d0d9ff, transparent 60%);
+            filter: blur(80px);
+        }
+
+        /* Idle state — pause animation to save GPU */
+        .ai-agent-box.idle .fluid-bg {
+            animation: none;
+            opacity: 0.5;
+        }
+
+        /* ─── Content layer ─────────────────────────────────────────────── */
+        .content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            gap: 0.875rem;
+        }
+
+        /* Spinner dot-pulse */
+        .pulse-ring {
+            flex-shrink: 0;
+            width: 2.25rem;
+            height: 2.25rem;
+            border-radius: 50%;
+            background: rgba(0, 74, 119, 0.12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .pulse-dot {
+            width: 0.875rem;
+            height: 0.875rem;
+            border-radius: 50%;
+            background: #004a77;
+            animation: pulseDot 1.6s ease-in-out infinite;
+        }
+
+        .ai-agent-box.idle .pulse-dot {
+            animation: none;
+            opacity: 0.4;
+        }
+
+        .text-block {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+        }
+
+        .label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            opacity: 0.55;
+        }
+
+        .message {
+            font-size: 0.95rem;
+            font-weight: 500;
+            line-height: 1.35;
+        }
+
+        /* ─── Demo controls ─────────────────────────────────────────────── */
+        .demo-hint {
+            font-size: 0.78rem;
+            color: rgba(255, 255, 255, 0.4);
+            text-align: center;
+            letter-spacing: 0.04em;
+        }
+
+        /* ─── Keyframes ─────────────────────────────────────────────────── */
+        @keyframes gradientFlow {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        @keyframes pulseDot {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(1.35);
+                opacity: 0.55;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ── Active / Thinking state ── -->
+    <div class="ai-agent-box" id="box-thinking">
+        <div class="fluid-bg"></div>
+        <div class="content">
+            <div class="pulse-ring">
+                <div class="pulse-dot"></div>
+            </div>
+            <div class="text-block">
+                <span class="label">AI Agent · Thinking</span>
+                <span class="message">Analysing your finance data…</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── Idle state ── -->
+    <div class="ai-agent-box idle" id="box-idle">
+        <div class="fluid-bg"></div>
+        <div class="content">
+            <div class="pulse-ring">
+                <div class="pulse-dot"></div>
+            </div>
+            <div class="text-block">
+                <span class="label">AI Agent · Idle</span>
+                <span class="message">Ready — awaiting your next prompt.</span>
+            </div>
+        </div>
+    </div>
+
+    <p class="demo-hint">Click either card to toggle active / idle state</p>
+
+    <!-- ── SVG turbulence filter (zero dimensions — invisible) ── -->
+    <svg width="0" height="0" aria-hidden="true" style="position:absolute">
+        <defs>
+            <filter id="lava" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB">
+
+                <feTurbulence id="turbulence" type="fractalNoise" baseFrequency="0.012 0.022" numOctaves="3" seed="5"
+                    result="noise">
+                    <animate attributeName="baseFrequency" dur="28s"
+                        values="0.010 0.020;0.020 0.032;0.013 0.025;0.010 0.020" repeatCount="indefinite" />
+                </feTurbulence>
+
+                <feDisplacementMap in="SourceGraphic" in2="noise" scale="45" xChannelSelector="R"
+                    yChannelSelector="G" />
+
+            </filter>
+        </defs>
+    </svg>
+
+    <script>
+        // Toggle idle / active on click
+        document.querySelectorAll('.ai-agent-box').forEach(box => {
+            box.addEventListener('click', () => box.classList.toggle('idle'));
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,897 @@
+[
+    {
+        "client_name": "Starbucks",
+        "client_unique_id": 1178,
+        "client_code": "CLN-3883"
+    },
+    {
+        "client_name": "Ceipal Software",
+        "client_unique_id": 1175,
+        "client_code": "CLN-3880"
+    },
+    {
+        "client_name": "ON-BEHALF",
+        "client_unique_id": 1166,
+        "client_code": "CLN-3871"
+    },
+    {
+        "client_name": "PAA",
+        "client_unique_id": 1143,
+        "client_code": "CLN-03844"
+    },
+    {
+        "client_name": "Zandu Balm",
+        "client_unique_id": 1135,
+        "client_code": "CLN-03836"
+    },
+    {
+        "client_name": "VANDITHA CLIENT",
+        "client_unique_id": 1123,
+        "client_code": "S_BU-206"
+    },
+    {
+        "client_name": "Ice Client for PO on 08082025",
+        "client_unique_id": 1122,
+        "client_code": "S_BU-203"
+    },
+    {
+        "client_name": "Kav Shiftpixy",
+        "client_unique_id": 1120,
+        "client_code": "S_BU-201"
+    },
+    {
+        "client_name": "HCL Technologies LLC",
+        "client_unique_id": 1118,
+        "client_code": "S_BU-199"
+    },
+    {
+        "client_name": "Dell INC",
+        "client_unique_id": 1117,
+        "client_code": "S_BU-198"
+    },
+    {
+        "client_name": "RE INC",
+        "client_unique_id": 1106,
+        "client_code": "S_BU-187"
+    },
+    {
+        "client_name": "Google INC 4",
+        "client_unique_id": 1105,
+        "client_code": "S_BU-186"
+    },
+    {
+        "client_name": "Pixel 9 INC",
+        "client_unique_id": 1102,
+        "client_code": "S_BU-183"
+    },
+    {
+        "client_name": "Timer",
+        "client_unique_id": 1101,
+        "client_code": "S_BU-182"
+    },
+    {
+        "client_name": "Raghu CGI",
+        "client_unique_id": 1094,
+        "client_code": "S_BU-175"
+    },
+    {
+        "client_name": "InLattice Test",
+        "client_unique_id": 1051,
+        "client_code": "S_BU-132"
+    },
+    {
+        "client_name": "TECHNO",
+        "client_unique_id": 1036,
+        "client_code": "S_BU-117"
+    },
+    {
+        "client_name": "Test dev2",
+        "client_unique_id": 1035,
+        "client_code": "S_BU-116"
+    },
+    {
+        "client_name": "Automation Demo Client",
+        "client_unique_id": 1034,
+        "client_code": "S_BU-115"
+    },
+    {
+        "client_name": "bill address test",
+        "client_unique_id": 1032,
+        "client_code": "S_BU-113"
+    },
+    {
+        "client_name": "test dire",
+        "client_unique_id": 1031,
+        "client_code": "S_BU-112"
+    },
+    {
+        "client_name": "Glassdoor",
+        "client_unique_id": 1030,
+        "client_code": "S_BU-111"
+    },
+    {
+        "client_name": "Test issue data",
+        "client_unique_id": 1029,
+        "client_code": "S_BU-110"
+    },
+    {
+        "client_name": "Test issue bill address",
+        "client_unique_id": 1028,
+        "client_code": "S_BU-109"
+    },
+    {
+        "client_name": "kav pro check1",
+        "client_unique_id": 1026,
+        "client_code": "S_BU-107"
+    },
+    {
+        "client_name": "E client",
+        "client_unique_id": 1025,
+        "client_code": "S_BU-106"
+    },
+    {
+        "client_name": "nobell",
+        "client_unique_id": 1019,
+        "client_code": "S_BU-100"
+    },
+    {
+        "client_name": "RG Client For PO",
+        "client_unique_id": 988,
+        "client_code": "S_BU-062"
+    },
+    {
+        "client_name": "Amazon Corp",
+        "client_unique_id": 985,
+        "client_code": "S_BU-059"
+    },
+    {
+        "client_name": "Saman Client Test 21052024",
+        "client_unique_id": 984,
+        "client_code": "S_BU-058"
+    },
+    {
+        "client_name": "17.13 client",
+        "client_unique_id": 977,
+        "client_code": "S_BU-051"
+    },
+    {
+        "client_name": "Samsung QB ",
+        "client_unique_id": 973,
+        "client_code": "S_BU-047"
+    },
+    {
+        "client_name": "Pre Certified client",
+        "client_unique_id": 972,
+        "client_code": "S_BU-046"
+    },
+    {
+        "client_name": "Timesheet INCV",
+        "client_unique_id": 971,
+        "client_code": "S_BU-045"
+    },
+    {
+        "client_name": "sony pvt ltd",
+        "client_unique_id": 970,
+        "client_code": "S_BU-044"
+    },
+    {
+        "client_name": "sandeep new",
+        "client_unique_id": 967,
+        "client_code": "S_BU-041"
+    },
+    {
+        "client_name": "6 HourHire Client",
+        "client_unique_id": 966,
+        "client_code": "S_BU-040"
+    },
+    {
+        "client_name": "For QB Sync Client Kav",
+        "client_unique_id": 965,
+        "client_code": "S_BU-039"
+    },
+    {
+        "client_name": "advi",
+        "client_unique_id": 961,
+        "client_code": "S_BU-035"
+    },
+    {
+        "client_name": "Rohit Client BU",
+        "client_unique_id": 958,
+        "client_code": "S_BU-032"
+    },
+    {
+        "client_name": "gus education 123",
+        "client_unique_id": 947,
+        "client_code": "S_BU-021"
+    },
+    {
+        "client_name": "CEIPAL US",
+        "client_unique_id": 946,
+        "client_code": "S_BU-020"
+    },
+    {
+        "client_name": "Raghu Softsol INC",
+        "client_unique_id": 942,
+        "client_code": "S_BU-016"
+    },
+    {
+        "client_name": "Margin test",
+        "client_unique_id": 939,
+        "client_code": "S_BU-013"
+    },
+    {
+        "client_name": "Test with revision",
+        "client_unique_id": 938,
+        "client_code": "S_BU-012"
+    },
+    {
+        "client_name": "Test margin3",
+        "client_unique_id": 937,
+        "client_code": "S_BU-011"
+    },
+    {
+        "client_name": "Test margin2",
+        "client_unique_id": 936,
+        "client_code": "S_BU-010"
+    },
+    {
+        "client_name": "Visible to owners",
+        "client_unique_id": 924,
+        "client_code": "CL_RK-1172"
+    },
+    {
+        "client_name": "Yes Bank",
+        "client_unique_id": 914,
+        "client_code": "CL_RK-1162"
+    },
+    {
+        "client_name": "Sewells",
+        "client_unique_id": 882,
+        "client_code": "CL_RK-1130"
+    },
+    {
+        "client_name": "IDFC",
+        "client_unique_id": 833,
+        "client_code": "CL_RK-1081"
+    },
+    {
+        "client_name": "Genpact",
+        "client_unique_id": 821,
+        "client_code": "CL_RK-1069"
+    },
+    {
+        "client_name": "Brand Eye",
+        "client_unique_id": 797,
+        "client_code": "CL_RK-1045"
+    },
+    {
+        "client_name": "Kav Sag Client",
+        "client_unique_id": 769,
+        "client_code": "CL_RK-1020"
+    },
+    {
+        "client_name": "Client bin",
+        "client_unique_id": 768,
+        "client_code": "CL_RK-1019"
+    },
+    {
+        "client_name": "Google Chrome",
+        "client_unique_id": 763,
+        "client_code": "CL_RK-1014"
+    },
+    {
+        "client_name": "ADIDAS",
+        "client_unique_id": 760,
+        "client_code": "CL_RK-1011"
+    },
+    {
+        "client_name": "LG",
+        "client_unique_id": 742,
+        "client_code": "Client-694"
+    },
+    {
+        "client_name": "Samsung",
+        "client_unique_id": 739,
+        "client_code": "Client-691"
+    },
+    {
+        "client_name": "765",
+        "client_unique_id": 731,
+        "client_code": "Client-683"
+    },
+    {
+        "client_name": "KT Bulk Client",
+        "client_unique_id": 721,
+        "client_code": "Client-673"
+    },
+    {
+        "client_name": "Bulk Client For Test",
+        "client_unique_id": 720,
+        "client_code": "Client-672"
+    },
+    {
+        "client_name": "Deloitte",
+        "client_unique_id": 714,
+        "client_code": "Client-666"
+    },
+    {
+        "client_name": "RG Ceipal",
+        "client_unique_id": 713,
+        "client_code": "Client-665"
+    },
+    {
+        "client_name": "RRR client1",
+        "client_unique_id": 711,
+        "client_code": "Client-663"
+    },
+    {
+        "client_name": "Rose",
+        "client_unique_id": 699,
+        "client_code": "Client-651"
+    },
+    {
+        "client_name": "Coforge ATS Placement Client",
+        "client_unique_id": 696,
+        "client_code": "Client-648"
+    },
+    {
+        "client_name": "Coforge",
+        "client_unique_id": 688,
+        "client_code": "Client-633"
+    },
+    {
+        "client_name": "ASDF",
+        "client_unique_id": 675,
+        "client_code": "Client-632"
+    },
+    {
+        "client_name": "JP Morgan & Chase Co.",
+        "client_unique_id": 669,
+        "client_code": "Client-629"
+    },
+    {
+        "client_name": "DP Test",
+        "client_unique_id": 667,
+        "client_code": "Client-627"
+    },
+    {
+        "client_name": "Akshitha hd",
+        "client_unique_id": 661,
+        "client_code": "Client-623"
+    },
+    {
+        "client_name": "AAAAAA",
+        "client_unique_id": 655,
+        "client_code": "Client-619"
+    },
+    {
+        "client_name": "Weekly - Bulk Timeoff Comments - 1INT, 1EXT",
+        "client_unique_id": 639,
+        "client_code": "Client-609"
+    },
+    {
+        "client_name": "Bulk Timesheet",
+        "client_unique_id": 638,
+        "client_code": "Client-608"
+    },
+    {
+        "client_name": "Qb Merge Clint",
+        "client_unique_id": 636,
+        "client_code": "Client-606"
+    },
+    {
+        "client_name": "New Qb Clint",
+        "client_unique_id": 635,
+        "client_code": "Client-605"
+    },
+    {
+        "client_name": "Berlin Product",
+        "client_unique_id": 633,
+        "client_code": "Client-603"
+    },
+    {
+        "client_name": "Google Us Client",
+        "client_unique_id": 632,
+        "client_code": "Client-602"
+    },
+    {
+        "client_name": "Raghu Client 15.16",
+        "client_unique_id": 631,
+        "client_code": "Client-601"
+    },
+    {
+        "client_name": "25 Feb Client",
+        "client_unique_id": 626,
+        "client_code": "Client-596"
+    },
+    {
+        "client_name": "Raghu Royal Enfield India",
+        "client_unique_id": 623,
+        "client_code": "Client-593"
+    },
+    {
+        "client_name": "Ceipal Logo Launched",
+        "client_unique_id": 618,
+        "client_code": "Client-588"
+    },
+    {
+        "client_name": "Adobe Readers Client Ceipal D",
+        "client_unique_id": 616,
+        "client_code": "Client-586"
+    },
+    {
+        "client_name": "Adobe Readers Client Ceipal A",
+        "client_unique_id": 613,
+        "client_code": "Client-583"
+    },
+    {
+        "client_name": "Apple India Pvt Ltd One",
+        "client_unique_id": 609,
+        "client_code": "Client-579"
+    },
+    {
+        "client_name": "Arcesium Add Client",
+        "client_unique_id": 603,
+        "client_code": "Client-573"
+    },
+    {
+        "client_name": "Pay Classification A",
+        "client_unique_id": 597,
+        "client_code": "Client-567"
+    },
+    {
+        "client_name": "Google Active Client",
+        "client_unique_id": 596,
+        "client_code": "Client-566"
+    },
+    {
+        "client_name": "Google India B",
+        "client_unique_id": 594,
+        "client_code": "Client-564"
+    },
+    {
+        "client_name": "Google India A",
+        "client_unique_id": 593,
+        "client_code": "Client-563"
+    },
+    {
+        "client_name": "Google India",
+        "client_unique_id": 592,
+        "client_code": "Client-562"
+    },
+    {
+        "client_name": "Manoj Pay Classification",
+        "client_unique_id": 589,
+        "client_code": "Client-559"
+    },
+    {
+        "client_name": "A Test",
+        "client_unique_id": 563,
+        "client_code": "Client-533"
+    },
+    {
+        "client_name": "A",
+        "client_unique_id": 557,
+        "client_code": "Client-527"
+    },
+    {
+        "client_name": "BATA",
+        "client_unique_id": 543,
+        "client_code": "Client-512"
+    },
+    {
+        "client_name": "TATA STEEL",
+        "client_unique_id": 542,
+        "client_code": "Client-511"
+    },
+    {
+        "client_name": "Ceipal New",
+        "client_unique_id": 536,
+        "client_code": "Client-503"
+    },
+    {
+        "client_name": "7-Eleven Client 117",
+        "client_unique_id": 535,
+        "client_code": "Client-502"
+    },
+    {
+        "client_name": "British Telecom",
+        "client_unique_id": 533,
+        "client_code": "Client-500"
+    },
+    {
+        "client_name": "Address Format",
+        "client_unique_id": 523,
+        "client_code": "CLN-492"
+    },
+    {
+        "client_name": "TATA CONS SER",
+        "client_unique_id": 522,
+        "client_code": "CLN-491"
+    },
+    {
+        "client_name": "Amazon Tets",
+        "client_unique_id": 521,
+        "client_code": "CLN-490"
+    },
+    {
+        "client_name": "QB Online Sync",
+        "client_unique_id": 481,
+        "client_code": "CLN-454"
+    },
+    {
+        "client_name": "QB Performance",
+        "client_unique_id": 470,
+        "client_code": "CLN-443"
+    },
+    {
+        "client_name": "Freeman Sporting Goods",
+        "client_unique_id": 469,
+        "client_code": "CLN-442"
+    },
+    {
+        "client_name": "Payment Client",
+        "client_unique_id": 464,
+        "client_code": "CLN-437"
+    },
+    {
+        "client_name": "Adobe India",
+        "client_unique_id": 454,
+        "client_code": "CLN-427"
+    },
+    {
+        "client_name": "Aditya Birla Text India ",
+        "client_unique_id": 452,
+        "client_code": "CLN-476"
+    },
+    {
+        "client_name": "Apple Text India Pvt Ltd",
+        "client_unique_id": 450,
+        "client_code": "CLN-425"
+    },
+    {
+        "client_name": "Apple Test India Pvt Ltd",
+        "client_unique_id": 449,
+        "client_code": "CLN-424"
+    },
+    {
+        "client_name": "Apple Test India Pvt Ltd",
+        "client_unique_id": 448,
+        "client_code": "CLN-424"
+    },
+    {
+        "client_name": "LG India",
+        "client_unique_id": 435,
+        "client_code": "CLN-413"
+    },
+    {
+        "client_name": "American Technologies Staging",
+        "client_unique_id": 433,
+        "client_code": "CLN-411"
+    },
+    {
+        "client_name": "Mindspace",
+        "client_unique_id": 422,
+        "client_code": "CLN-401"
+    },
+    {
+        "client_name": "Microsoft Edge",
+        "client_unique_id": 414,
+        "client_code": "CLN-393"
+    },
+    {
+        "client_name": "Amaron India",
+        "client_unique_id": 406,
+        "client_code": "CLN-385"
+    },
+    {
+        "client_name": "Amazon India ABC",
+        "client_unique_id": 397,
+        "client_code": "CLN-376"
+    },
+    {
+        "client_name": "Cloudy Technologies",
+        "client_unique_id": 380,
+        "client_code": "CLN-361"
+    },
+    {
+        "client_name": "Aditya & Birla",
+        "client_unique_id": 365,
+        "client_code": "CLN-346"
+    },
+    {
+        "client_name": "Amity Technologies",
+        "client_unique_id": 360,
+        "client_code": "CLN-341"
+    },
+    {
+        "client_name": "Infosys Ltd",
+        "client_unique_id": 332,
+        "client_code": "CLN-313"
+    },
+    {
+        "client_name": "Client Placement AA",
+        "client_unique_id": 331,
+        "client_code": "CLN-312"
+    },
+    {
+        "client_name": "Eboarding Client Apple",
+        "client_unique_id": 328,
+        "client_code": "CLN-309"
+    },
+    {
+        "client_name": "AAAPle India",
+        "client_unique_id": 327,
+        "client_code": "CLN-308"
+    },
+    {
+        "client_name": "CHK Corp",
+        "client_unique_id": 304,
+        "client_code": "S_BU-078"
+    },
+    {
+        "client_name": "Pay On Pay Client",
+        "client_unique_id": 302,
+        "client_code": "CLN-285"
+    },
+    {
+        "client_name": "TANIS SOFT",
+        "client_unique_id": 298,
+        "client_code": "S_BU-073"
+    },
+    {
+        "client_name": "Mnbvc&H",
+        "client_unique_id": 293,
+        "client_code": "CLN-282"
+    },
+    {
+        "client_name": "Google",
+        "client_unique_id": 287,
+        "client_code": "CLN-278"
+    },
+    {
+        "client_name": "Indotronix",
+        "client_unique_id": 283,
+        "client_code": "CLN-274"
+    },
+    {
+        "client_name": "Amazon India Client",
+        "client_unique_id": 282,
+        "client_code": "CLN-273"
+    },
+    {
+        "client_name": "APPLE INDIA PVT LTD",
+        "client_unique_id": 270,
+        "client_code": "CLN-261"
+    },
+    {
+        "client_name": "New Client",
+        "client_unique_id": 267,
+        "client_code": "CLN-258"
+    },
+    {
+        "client_name": "Q-Spiders Invoice",
+        "client_unique_id": 249,
+        "client_code": "CLN-242"
+    },
+    {
+        "client_name": "Business Magnet",
+        "client_unique_id": 248,
+        "client_code": "CLN-239"
+    },
+    {
+        "client_name": "Quick Links Client",
+        "client_unique_id": 244,
+        "client_code": "CLN-235"
+    },
+    {
+        "client_name": "Test Client_from Invoice_1",
+        "client_unique_id": 238,
+        "client_code": "CLN-229"
+    },
+    {
+        "client_name": "Adobe Readers",
+        "client_unique_id": 226,
+        "client_code": "CLN-218"
+    },
+    {
+        "client_name": "ZenQ",
+        "client_unique_id": 217,
+        "client_code": "CLN-057"
+    },
+    {
+        "client_name": "Ceipal Solutions",
+        "client_unique_id": 216,
+        "client_code": "CLN-208"
+    },
+    {
+        "client_name": "Nilkamal",
+        "client_unique_id": 214,
+        "client_code": "CLN-206"
+    },
+    {
+        "client_name": "Himalaya Since 1930",
+        "client_unique_id": 212,
+        "client_code": "CLN-205"
+    },
+    {
+        "client_name": "British-Telecom",
+        "client_unique_id": 202,
+        "client_code": "CLN-194"
+    },
+    {
+        "client_name": "Ceipal Solutions Pvt Imits",
+        "client_unique_id": 201,
+        "client_code": "CLN-193"
+    },
+    {
+        "client_name": "AVANI TECH",
+        "client_unique_id": 178,
+        "client_code": "CLN-170"
+    },
+    {
+        "client_name": "final inv",
+        "client_unique_id": 160,
+        "client_code": "CLN-153"
+    },
+    {
+        "client_name": "Avani Client",
+        "client_unique_id": 135,
+        "client_code": "CLN-128"
+    },
+    {
+        "client_name": "TATA CONSULTANCY SERVICES Limited",
+        "client_unique_id": 134,
+        "client_code": "CLN-127"
+    },
+    {
+        "client_name": "Amazon Development Centre India Pvt Ltd",
+        "client_unique_id": 131,
+        "client_code": "CLN-124"
+    },
+    {
+        "client_name": "Test Client 777",
+        "client_unique_id": 129,
+        "client_code": "CLN-122"
+    },
+    {
+        "client_name": "Innominds",
+        "client_unique_id": 124,
+        "client_code": "CLN-117"
+    },
+    {
+        "client_name": "Invoice QB Clients Testing",
+        "client_unique_id": 123,
+        "client_code": "CLN-116"
+    },
+    {
+        "client_name": "IDBI",
+        "client_unique_id": 122,
+        "client_code": "CLN-115"
+    },
+    {
+        "client_name": "Ceipal Team",
+        "client_unique_id": 117,
+        "client_code": "CLN-111"
+    },
+    {
+        "client_name": "Ceipal",
+        "client_unique_id": 114,
+        "client_code": "CLN-108"
+    },
+    {
+        "client_name": "Google India Pvt Ltd",
+        "client_unique_id": 111,
+        "client_code": "CLN-105"
+    },
+    {
+        "client_name": "TCS",
+        "client_unique_id": 107,
+        "client_code": "CLN-101"
+    },
+    {
+        "client_name": "Bravery Inc.",
+        "client_unique_id": 105,
+        "client_code": "CLN-099"
+    },
+    {
+        "client_name": "CoMakeIT",
+        "client_unique_id": 103,
+        "client_code": "CLN-097"
+    },
+    {
+        "client_name": "Prod Client",
+        "client_unique_id": 95,
+        "client_code": "CLN-089"
+    },
+    {
+        "client_name": "Kavya",
+        "client_unique_id": 92,
+        "client_code": "CLN-087"
+    },
+    {
+        "client_name": "Happy",
+        "client_unique_id": 86,
+        "client_code": "CLN-001"
+    },
+    {
+        "client_name": "CIGNITY",
+        "client_unique_id": 81,
+        "client_code": "CLN-081"
+    },
+    {
+        "client_name": "FEDERALBANK",
+        "client_unique_id": 80,
+        "client_code": "CLN-080"
+    },
+    {
+        "client_name": "L & T Software Solutions Pvt Ltd. IIC Ltd",
+        "client_unique_id": 76,
+        "client_code": "CLN-076"
+    },
+    {
+        "client_name": "Grant Aviation",
+        "client_unique_id": 69,
+        "client_code": "CLN-069"
+    },
+    {
+        "client_name": "Amzon Prime",
+        "client_unique_id": 60,
+        "client_code": "CLN-060"
+    },
+    {
+        "client_name": "IBM",
+        "client_unique_id": 58,
+        "client_code": "CLN-058"
+    },
+    {
+        "client_name": "CEIPAL BEATS",
+        "client_unique_id": 52,
+        "client_code": "CLN-052"
+    },
+    {
+        "client_name": "AMAZON Five",
+        "client_unique_id": 31,
+        "client_code": "CLN-032"
+    },
+    {
+        "client_name": "Technogen",
+        "client_unique_id": 30,
+        "client_code": "CLN-031"
+    },
+    {
+        "client_name": "Ghf",
+        "client_unique_id": 18,
+        "client_code": "CLN-018"
+    },
+    {
+        "client_name": "Avaya",
+        "client_unique_id": 16,
+        "client_code": "CLN-045"
+    },
+    {
+        "client_name": "Capgemini",
+        "client_unique_id": 12,
+        "client_code": "CLN-012"
+    },
+    {
+        "client_name": "ADP",
+        "client_unique_id": 8,
+        "client_code": "CLN-008"
+    },
+    {
+        "client_name": "Avani",
+        "client_unique_id": 7,
+        "client_code": "CLN-050"
+    },
+    {
+        "client_name": "Adobe testt test",
+        "client_unique_id": 6,
+        "client_code": "CLN-006"
+    },
+    {
+        "client_name": "Synergiess",
+        "client_unique_id": 1,
+        "client_code": "68974521"
+    }
+]

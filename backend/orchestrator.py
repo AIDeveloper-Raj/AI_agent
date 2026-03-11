@@ -4,14 +4,13 @@ from openai import OpenAI
 from dotenv import load_dotenv
 
 from backend.prompts import FINANCE_SYSTEM_PROMPT
-from backend.tools import scan_pending_billing, draft_ar_invoice, draft_ap_bill, query_database, FINANCE_TOOLS 
+from backend.tools import run_ar_billing, draft_ap_bill, query_database, FINANCE_TOOLS
 
 load_dotenv()
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 AVAILABLE_TOOLS = {
-    "scan_pending_billing": scan_pending_billing,
-    "draft_ar_invoice": draft_ar_invoice,
+    "run_ar_billing": run_ar_billing,
     "draft_ap_bill": draft_ap_bill,
     "query_database": query_database
 }
