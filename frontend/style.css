@@ -430,6 +430,7 @@ h4,
     /* clips — inner-body scrolls */
     display: flex;
     flex-direction: column;
+    padding: 18px;
 }
 
 .canvas-empty {
@@ -828,4 +829,172 @@ h4,
     .landing-hero {
         width: min(1100px, 80vw);
     }
+}
+
+/* ============================================================
+   10. CANVAS SUMMARY BLOCK (Finance Snapshot)
+   ============================================================ */
+
+.canvas-summary-wrap {
+  margin-bottom: 18px;
+}
+
+.canvas-summary-title {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  opacity: 0.95;
+}
+
+.canvas-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+.canvas-summary-card {
+  position: relative;
+  padding: 14px;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+}
+
+.canvas-summary-card-emphasis {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.12);
+}
+
+.canvas-summary-icon {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.canvas-summary-label {
+  font-size: 12px;
+  opacity: 0.75;
+  margin-bottom: 6px;
+}
+
+.canvas-summary-value {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.advisor-wrap {
+  margin-bottom: 18px;
+  padding: 16px;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.025);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.advisor-title {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.advisor-summary {
+  font-size: 13px;
+  line-height: 1.5;
+  margin-bottom: 10px;
+  opacity: 0.92;
+}
+
+.advisor-points {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.advisor-points li {
+  margin-bottom: 6px;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.risk-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.risk-high {
+  background: rgba(255, 99, 71, 0.14);
+  border-color: rgba(255, 99, 71, 0.28);
+}
+
+.risk-monitor {
+  background: rgba(255, 196, 0, 0.14);
+  border-color: rgba(255, 196, 0, 0.28);
+}
+
+.risk-ontrack {
+  background: rgba(0, 200, 120, 0.14);
+  border-color: rgba(0, 200, 120, 0.28);
+}
+
+.canvas-block {
+  margin-top: 18px;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.02);
+}
+
+.canvas-block-title {
+  padding: 14px 16px;
+  font-size: 14px;
+  font-weight: 700;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.03);
+}
+
+.canvas-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: auto;
+  border: 1px solid #e2e8f0;
+}
+
+.canvas-table thead th {
+  text-align: left;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 12px 14px;
+  border-bottom: 1px solid #e2e8f0;
+  background: #f1f3f5;
+  opacity: 0.9;
+  white-space: nowrap;
+}
+
+.canvas-table tbody tr {
+  background: #ffffff;
+}
+
+.canvas-table tbody td {
+  padding: 12px 14px;
+  font-size: 13px;
+  border-bottom: 1px solid #e2e8f0;
+  vertical-align: top;
+}
+
+.canvas-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.canvas-table tbody tr:hover {
+  background: rgba(255,255,255,0.025);
+}
+
+.canvas-empty {
+  padding: 16px;
+  font-size: 13px;
+  opacity: 0.75;
 }
